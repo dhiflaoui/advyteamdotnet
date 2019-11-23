@@ -26,6 +26,24 @@ namespace Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //admin
+
+
+            bundles.Add(new ScriptBundle("~/bundles/admin/js").Include(
+                        "~/js/jquery2.0.3.min.js", "~/js/modernizr.js", "~/js/jquery.cookie.js", "~/js/screenfull.js"
+                        , "~/js/raphael-min.js", "~/js/morris.js", "~/js/skycons.js", "~/js/bootstrap.js", "~/js/proton.js"));
+
+
+            bundles.Add(new StyleBundle("~/Content/admin/css").Include(
+                      "~/css/bootstrap.css", "~/css/style.css", //"//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic",
+                     "~/css/font.css", "~/css/font-awesome.css", "~/css/morris.css"));
         }
+
+
+
+
+
     }
-}
+    }
+
