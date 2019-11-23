@@ -24,7 +24,7 @@ namespace Web.Controllers
             }
             else
             {
-                ViewBag.result = "error";
+                ViewBag.result = "error1";
             }
             return View();
         }
