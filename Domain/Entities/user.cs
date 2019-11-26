@@ -101,5 +101,10 @@ namespace Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
+
+
+        public virtual ICollection<Reclamation> reclamations { get; set; }
+
+
     }
 }

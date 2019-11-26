@@ -5,7 +5,7 @@ namespace Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using Domain.Entities;
-
+    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public partial class AdvyteamContext : DbContext
     {
         public AdvyteamContext()
