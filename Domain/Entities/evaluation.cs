@@ -6,12 +6,14 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("pidev.evaluation")]
-    public partial class evaluation
+    
+    public  class evaluation
     {
+        [Key]
         public int id { get; set; }
-
-        public DateTime? DATE_EVAL { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}")]
+        public DateTime DATE_EVAL { get; set; }
 
         [StringLength(255)]
         public string Titre_Eval { get; set; }
@@ -29,8 +31,10 @@ namespace Domain.Entities
         public int? score_team { get; set; }
 
         public int? user_id { get; set; }
+        [ForeignKey("user_id")]
 
         public virtual user user { get; set; }
-        public virtual ICollection<Reclamation> reclamations { get; set; }
+
+       public virtual ICollection<Reclamation> reclamations { get; set; }
     }
 }

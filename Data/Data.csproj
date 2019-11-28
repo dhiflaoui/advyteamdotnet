@@ -94,9 +94,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201911260901062_test2.cs" />
-    <Compile Include="Migrations\201911260901062_test2.Designer.cs">
-      <DependentUpon>201911260901062_test2.cs</DependentUpon>
+    <Compile Include="Migrations\201911271433461_fk.cs" />
+    <Compile Include="Migrations\201911271433461_fk.Designer.cs">
+      <DependentUpon>201911271433461_fk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,8 +114,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911260901062_test2.resx">
-      <DependentUpon>201911260901062_test2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911271433461_fk.resx">
+      <DependentUpon>201911271433461_fk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

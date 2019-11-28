@@ -237,12 +237,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911241219033_claim.cs" />
-    <Compile Include="Migrations\201911241219033_claim.Designer.cs">
-      <DependentUpon>201911241219033_claim.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EvaluaionViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -369,8 +365,8 @@
     <Content Include="Views\Employe\Index.cshtml" />
     <Content Include="Views\Shared\_myLayout.cshtml" />
     <Content Include="Views\test\Index.cshtml" />
-    <Content Include="Views\Evaluation\IndexEval.cshtml" />
-    <Content Include="Views\Evaluation\CreateEval.cshtml" />
+    <Content Include="Views\Evaluation\Create.cshtml" />
+    <Content Include="Views\Evaluation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,11 +392,6 @@
       <Project>{e0e30561-82de-4253-965a-e4951a9f28bb}</Project>
       <Name>Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911241219033_claim.resx">
-      <DependentUpon>201911241219033_claim.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

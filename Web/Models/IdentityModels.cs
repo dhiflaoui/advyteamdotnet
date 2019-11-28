@@ -29,5 +29,9 @@ namespace Web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Domain.Entities.evaluation> evaluations { get; set; }
+
+        public System.Data.Entity.DbSet<Web.Models.EvaluaionViewModel> EvaluaionViewModels { get; set; }
     }
 }

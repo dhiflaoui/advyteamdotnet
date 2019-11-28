@@ -6,7 +6,7 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("pidev.conge")]
+    
     public partial class conge
     {
         public int id { get; set; }

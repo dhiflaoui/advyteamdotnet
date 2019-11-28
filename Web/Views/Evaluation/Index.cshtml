@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Domain.Entities.evaluation>
+
+@{
+    ViewBag.Title = "ListeEvaluation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE_EVAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titre_Eval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desc_Eval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score_Manager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score_self)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score_team)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.result) {
+    <tr>
+        <td>
+
+            @item.DATE_EVAL
+        </td>
+        <td>
+            @item.Titre_Eval
+        </td>
+        <td>
+            @item.Type
+        </td>
+        <td>
+            @item.desc_Eval
+        </td>
+        <td>
+            @item.score_Manager
+        </td>
+        <td>
+            @item.score_self
+        </td>
+        <td>
+            @item.score_team
+        </td>
+        <td>
+            @item.user_id
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

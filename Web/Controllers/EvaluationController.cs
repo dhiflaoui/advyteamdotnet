@@ -22,6 +22,9 @@ namespace Web.Controllers
             HttpResponseMessage response = Client.GetAsync("rest/evaluations/liste").Result;
             if (response.IsSuccessStatusCode)
             {
+               /* DateTime FinalDate = DateTime.Now;//your fitro object date will be here
+                string xdate = String.Format(" Data <= '{0}' ", FinalDate.ToString("yyyy-MM-dd") + " 23:59:59");
+                Text = xdate;*/
                 ViewBag.result = response.Content.ReadAsAsync<IEnumerable<evaluation>>().Result;
             }
             else

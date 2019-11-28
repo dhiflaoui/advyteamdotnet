@@ -6,7 +6,7 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("pidev.user")]
+    
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +22,7 @@ namespace Domain.Entities
             missions = new HashSet<mission>();
             projects = new HashSet<project>();
         }
-
+        [Key]
         public int id { get; set; }
 
         [Column(TypeName = "bit")]
@@ -103,8 +103,7 @@ namespace Domain.Entities
         public virtual ICollection<project> projects { get; set; }
 
 
-        public virtual ICollection<Reclamation> reclamations { get; set; }
-
+      
 
     }
 }
