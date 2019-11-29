@@ -5,11 +5,11 @@ namespace Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using Domain.Entities;
-
+ // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public partial class AdvyteamContext : DbContext
     {
         public AdvyteamContext()
-            : base("AdvyteamContext")
+            : base("name=AdvyteamContext")
         {
         }
 
@@ -27,6 +27,8 @@ namespace Data
         public virtual DbSet<report> reports { get; set; }
         public virtual DbSet<task> tasks { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<publication> publications { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -334,6 +336,18 @@ namespace Data
                 .HasMany(e => e.projects)
                 .WithOptional(e => e.user)
                 .HasForeignKey(e => e.ownedBy_id);
+            modelBuilder.Entity<publication>()
+                 .Property(e => e.file)
+                 .IsUnicode(false);
+
+            modelBuilder.Entity<publication>()
+                .Property(e => e.statut)
+                .IsUnicode(false);
+            modelBuilder.Entity<user>()
+              .HasMany(e => e.publications)
+              .WithOptional(e => e.user)
+              .HasForeignKey(e => e.user_id);
+
         }
     }
 }

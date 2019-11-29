@@ -43,18 +43,16 @@ namespace Web.Controllers
 
         // POST: Employe/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(user u)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:9080/PIDEV_project-web/");
+            HttpContent content = new StringContent("");
+            Client.PostAsJsonAsync("rest/users/add/"+u.cin+"/"+u.nom+"/"+u.prenom+"/"+u.adresseMail+"/"+u.motdp+"/"
+                +u.photo+"/"+u.cv+"/"+u.ville+"/"+u.tel+"/"+u.solde_conge+"/"+u.solde_absence+"/"
+                +u.salaire+"/"+u.role+"/"+u.specialite, content).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+            
+            return RedirectToAction("Index", "Employe");
         }
 
         // GET: Employe/Edit/5
@@ -82,7 +80,11 @@ namespace Web.Controllers
         // GET: Employe/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:9080/PIDEV_project-web/");
+            client.DeleteAsync("rest/users/delete/" + id).ContinueWith((deleteTask) => deleteTask.Result.EnsureSuccessStatusCode());
+
+            return RedirectToAction("Index", "Employe");
         }
 
         // POST: Employe/Delete/5

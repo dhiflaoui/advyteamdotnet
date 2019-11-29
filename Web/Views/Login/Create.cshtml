@@ -1,0 +1,105 @@
+﻿@model Domain.Entities.user
+@{
+    ViewBag.Title = "Create";
+
+}
+
+@using CaptchaMvc.HtmlHelpers;
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <div class="white-box">
+                        <div class="about-title">
+                            <h3>S'authentifier</h3>
+                        </div><!-- end about-title -->
+                        <div class="about-content">
+
+                            <center><div class="logo">
+    <h1><a href="index.html"><img src="images/logo.png" alt="" width="140" /></a></h1>
+</div></center>
+                            <br />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cin, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.cin, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.cin, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.motdp, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.motdp, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.motdp, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <center>
+                                <div class="form-group">
+                                    @Html.Captcha(5)
+                                    <br />
+                                    <b>@ViewBag.error</b>
+                                    <br />
+
+                                </div>
+                            </center>
+                            <b>@ViewBag.NoUSER</b>
+                            <br />
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="S'authentifier" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-3.1.0.js"></script>
+<link href="~/content/toastr.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.js"></script>
+
+@if (TempData["BadCredentials"] != null)
+{
+    <script type="text/javascript">
+
+        toastr["error"]("Erreur", "Vérifier vos cordoonés")
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+    </script>
+}

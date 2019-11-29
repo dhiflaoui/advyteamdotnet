@@ -1,0 +1,58 @@
+﻿@model Domain.Entities.publication
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+
+}
+<body>
+
+    <h2>Create</h2>
+@using (Html.BeginForm("Create", "Publication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Publication</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.statut, htmlAttributes: new
+       {
+           @class = "control-label col-md-2"
+       })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.statut, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control"
+               }
+           })
+                    @Html.ValidationMessageFor(model => model.statut, "", new
+           {
+               @class = "text-danger"
+           })
+                </div>
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.file)
+                <div class="editor-field">
+                    @Html.TextBox("file1", "", new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </body>
