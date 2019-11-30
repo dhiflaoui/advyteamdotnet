@@ -66,6 +66,9 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(reclamation claim, HttpPostedFileBase file)
         {
+            claim.statut = ouvert;
+            DateTime dateouvr = DateTime.Now;
+            claim.dateopen = dateouvr;
             // //file
             //claim.fich = file.FileName;
             // if (file.ContentLength > 0)
@@ -75,28 +78,28 @@ namespace Web.Controllers
             //     file.SaveAs(path);
             // }
 
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.UseDefaultCredentials = false;
-            client.EnableSsl = true;
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("projectd308@gmail.com");
-            mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
-            mailMessage.Subject = "Hello There";
-            mailMessage.Body = "thanks for your claim";
-            NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
-            client.Credentials = nc;
-            client.Send(mailMessage);
-
-
-            claim.statut = ouvert;
-            DateTime dateouvr = DateTime.Now;
-            claim.dateopen = dateouvr;
-
             CS.Add(claim);
             CS.Commit();
-          
+
+
+           // //mail send
+           // SmtpClient client = new SmtpClient();
+           // client.Host = "smtp.gmail.com";
+           // client.Port = 587;
+           // client.UseDefaultCredentials = false;
+           // client.EnableSsl = true;
+           // MailMessage mailMessage = new MailMessage();
+           // mailMessage.From = new MailAddress("projectd308@gmail.com");
+           // mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
+           // mailMessage.Subject = "Information sur votre Reclamtion";
+           // var body = "<p>Merci pour votre reclamation ,Pour bien suivi votre réclamation ,ç'est votre numéro de ticket: {0} ,Date d'ouverture {1}</p>";
+           // mailMessage.IsBodyHtml = true;
+           // mailMessage.Body = string.Format(body, claim.ReclmationID, claim.dateopen);
+           //// mailMessage.Body = "thanks for your claim";
+           // NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
+           // client.Credentials = nc;
+           // client.Send(mailMessage);
+
 
             return RedirectToAction("Create");
 
