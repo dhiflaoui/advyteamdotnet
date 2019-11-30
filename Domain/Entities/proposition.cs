@@ -6,25 +6,23 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("pidev.conge")]
-    public partial class conge
+    [Table("pidev.proposition")]
+    public partial class proposition
     {
-        public int id { get; set; }
+        [Key]
+        public int ProposID { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? dateDebut { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? dateFin { get; set; }
+        public DateTime? dateprop { get; set; }
 
         [StringLength(255)]
-        public string etat { get; set; }
+        public string descprop { get; set; }
 
         [StringLength(255)]
-        public string file { get; set; }
+        public string fichier { get; set; }
 
         [StringLength(255)]
-        public string type { get; set; }
+        public string titreprop { get; set; }
 
         public int? user_id { get; set; }
 

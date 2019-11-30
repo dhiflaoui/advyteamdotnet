@@ -95,7 +95,8 @@
     <Compile Include="Entities\formation.cs" />
     <Compile Include="Entities\mission.cs" />
     <Compile Include="Entities\project.cs" />
-    <Compile Include="Entities\Reclamation.cs" />
+    <Compile Include="Entities\proposition.cs" />
+    <Compile Include="Entities\reclamation.cs" />
     <Compile Include="Entities\report.cs" />
     <Compile Include="Entities\task.cs" />
     <Compile Include="Entities\user.cs" />

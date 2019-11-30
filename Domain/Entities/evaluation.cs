@@ -6,14 +6,19 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    
-    public  class evaluation
+    [Table("pidev.evaluation")]
+    public partial class evaluation
     {
-        [Key]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public evaluation()
+        {
+            reclamations = new HashSet<reclamation>();
+        }
+
         public int id { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}")]
-        public DateTime DATE_EVAL { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? DATE_EVAL { get; set; }
 
         [StringLength(255)]
         public string Titre_Eval { get; set; }
@@ -31,10 +36,10 @@ namespace Domain.Entities
         public int? score_team { get; set; }
 
         public int? user_id { get; set; }
-        [ForeignKey("user_id")]
 
         public virtual user user { get; set; }
 
-       public virtual ICollection<Reclamation> reclamations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reclamation> reclamations { get; set; }
     }
 }

@@ -84,8 +84,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClaimService.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="EvalService.cs" />
+    <Compile Include="IClaimService.cs" />
+    <Compile Include="IEvalService.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

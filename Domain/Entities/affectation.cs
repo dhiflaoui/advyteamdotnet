@@ -6,8 +6,8 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    
-    public  class affectation
+    [Table("pidev.affectation")]
+    public partial class affectation
     {
         public int Id { get; set; }
 

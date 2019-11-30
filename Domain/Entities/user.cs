@@ -6,7 +6,7 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    
+    [Table("pidev.user")]
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +21,10 @@ namespace Domain.Entities
             formations = new HashSet<formation>();
             missions = new HashSet<mission>();
             projects = new HashSet<project>();
+            propositions = new HashSet<proposition>();
+            reclamations = new HashSet<reclamation>();
         }
-        [Key]
+
         public int id { get; set; }
 
         [Column(TypeName = "bit")]
@@ -102,8 +104,10 @@ namespace Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proposition> propositions { get; set; }
 
-      
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reclamation> reclamations { get; set; }
     }
 }

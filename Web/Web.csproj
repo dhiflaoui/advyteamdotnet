@@ -230,6 +230,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\EmployeController.cs" />
     <Compile Include="Controllers\EvaluationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -367,6 +368,7 @@
     <Content Include="Views\test\Index.cshtml" />
     <Content Include="Views\Evaluation\Create.cshtml" />
     <Content Include="Views\Evaluation\Index.cshtml" />
+    <Content Include="Views\Claim\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

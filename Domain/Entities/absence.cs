@@ -6,8 +6,8 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    
-    public  class absence
+    [Table("pidev.absence")]
+    public partial class absence
     {
         public int id { get; set; }
 

@@ -6,10 +6,9 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-   
-    public  class assignment
+    [Table("pidev.assignment")]
+    public partial class assignment
     {
-        [Key]
         public int id { get; set; }
 
         [StringLength(255)]
