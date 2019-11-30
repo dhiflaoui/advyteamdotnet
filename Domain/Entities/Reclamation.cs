@@ -15,13 +15,11 @@ namespace Domain.Entities
 
 
         [Display(Name = "Votre Nom")]
-        [Required(ErrorMessage = "Choisir votre nom")]
         public int? user_id { get; set; }
         public virtual user user { get; set; }
 
 
         [Display(Name = "Titre Evaluation")]
-        [Required(ErrorMessage = "Titre Evaluation est obligatoire")]
         public int? evaluation_id { get; set; }
         public virtual evaluation evaluation { get; set; }
 
@@ -61,6 +59,7 @@ namespace Domain.Entities
         [DataType(DataType.MultilineText)]
         public string reponse { get; set; }
 
+       
         public Statut statut { get; set; }
 
 

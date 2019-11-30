@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using Service;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace Web.Controllers
 {
@@ -32,6 +34,18 @@ namespace Web.Controllers
         // GET: Claim/Details/5
         public ActionResult Details(int id)
         {
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //var claim = from p in db.PurchaseItems
+            //                where p.ReclamationID == id
+            //                select p;
+            //if (claim == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(claim.ToList());
             return View();
         }
 
@@ -52,14 +66,29 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(reclamation claim, HttpPostedFileBase file)
         {
-           // //file
-           //claim.fich = file.FileName;
-           // if (file.ContentLength > 0)
+            // //file
+            //claim.fich = file.FileName;
+            // if (file.ContentLength > 0)
 
-           // {
-           //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
-           //     file.SaveAs(path);
-           // }
+            // {
+            //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
+            //     file.SaveAs(path);
+            // }
+
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.UseDefaultCredentials = false;
+            client.EnableSsl = true;
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("projectd308@gmail.com");
+            mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
+            mailMessage.Subject = "Hello There";
+            mailMessage.Body = "thanks for your claim";
+            NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
+            client.Credentials = nc;
+            client.Send(mailMessage);
+
 
             claim.statut = ouvert;
             DateTime dateouvr = DateTime.Now;
