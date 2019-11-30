@@ -17,8 +17,9 @@ namespace Domain.Entities
 
         public int id { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? DATE_EVAL { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}")]
+        public DateTime DATE_EVAL { get; set; }
 
         [StringLength(255)]
         public string Titre_Eval { get; set; }

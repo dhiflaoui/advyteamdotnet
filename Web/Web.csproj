@@ -248,6 +248,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\upload\44748876_341893426565178_6332916216956452864_n.jpg" />
     <Content Include="css\aaf5c053.proton.css" />
     <Content Include="css\basictable.css" />
     <Content Include="css\bootstrap.css" />
@@ -369,6 +370,8 @@
     <Content Include="Views\Evaluation\Create.cshtml" />
     <Content Include="Views\Evaluation\Index.cshtml" />
     <Content Include="Views\Claim\Create.cshtml" />
+    <Content Include="Views\Claim\Edit.cshtml" />
+    <Content Include="Views\Claim\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

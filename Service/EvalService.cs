@@ -11,11 +11,11 @@ namespace Service
 {
    public  class EvalService : Service<evaluation> , IEvalService
     {
-    //    static IDatabaseFactory factory = new DatabaseFactory();
-    //static IUnitOfWork iow = new UnitOfWork(factory);
-    //public EvalService() : base(iow)
-    //{
+        static IDatabaseFactory factory = new DatabaseFactory();
+        static IUnitOfWork iow = new UnitOfWork(factory);
+        public EvalService() : base(iow)
+        {
 
-    //}
-}
+        }
+    }
 }

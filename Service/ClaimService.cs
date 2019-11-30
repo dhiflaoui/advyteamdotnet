@@ -15,7 +15,15 @@ namespace Service
         static IUnitOfWork iow = new UnitOfWork(factory);
         public ClaimService() : base(iow)
         {
+        }
 
+        public IEnumerable<reclamation> getListByEval(String eval)
+        {
+            return GetAll().Where(x => x.evaluation.id.Equals(eval));
+        }
+        public IEnumerable<reclamation> getListByUser(String usr)
+        {
+            return GetAll().Where(x => x.user.nom.Equals(usr));
         }
     }
 }

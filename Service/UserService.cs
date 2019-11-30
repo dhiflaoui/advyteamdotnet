@@ -11,12 +11,12 @@ namespace Service
 {
     public class UserService :Service<user> , IUserService
     {
-    //    static IDatabaseFactory factory = new DatabaseFactory();
-    //static IUnitOfWork iow = new UnitOfWork(factory);
-    //public UserService() : base(iow)
-    //{
+        static IDatabaseFactory factory = new DatabaseFactory();
+        static IUnitOfWork iow = new UnitOfWork(factory);
+        public UserService() : base(iow)
+        {
 
-    //}
+        }
 
-}
+    }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Service;
+using System.IO;
 
 namespace Web.Controllers
 {
@@ -13,7 +14,9 @@ namespace Web.Controllers
         IClaimService CS;
         IEvalService EV;
         IUserService US;
-
+        
+        private Statut ouvert;
+        
         public ClaimController()
         {
             CS = new ClaimService();
@@ -23,7 +26,7 @@ namespace Web.Controllers
         // GET: Claim
         public ActionResult Index()
         {
-            return View();
+            return View(CS.GetAll());
         }
 
         // GET: Claim/Details/5
@@ -35,24 +38,36 @@ namespace Web.Controllers
         // GET: Claim/Create
         public ActionResult Create()
         {
-            ////return list deroulent de evaluation
-            //var ListEval = EV.GetAll();
-            //ViewBag.EvalID = new SelectList(ListEval, "EvalID ", "Titre_Eval");
-            ////return list deroulent users name
-            //var ListUser = US.GetAll();
-            //ViewBag.EvalID = new SelectList(ListUser, "user_id ", "nom"+ "prenom");
+            //return list deroulent de evaluation
+            var ListEval = EV.GetAll();
+            ViewBag.evaluation_id = new SelectList(ListEval, "id ", "Titre_Eval");
+            //return list deroulent users name
+            var ListUser = US.GetAll();
+            ViewBag.user_id = new SelectList(ListUser, "id ", "nom"+ "prenom");
 
             return View();
         }
 
         // POST: Claim/Create
         [HttpPost]
-        public ActionResult Create(reclamation claim)
+        public ActionResult Create(reclamation claim, HttpPostedFileBase file)
         {
-           
+           // //file
+           //claim.fich = file.FileName;
+           // if (file.ContentLength > 0)
+
+           // {
+           //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
+           //     file.SaveAs(path);
+           // }
+
+            claim.statut = ouvert;
+            DateTime dateouvr = DateTime.Now;
+            claim.dateopen = dateouvr;
+
             CS.Add(claim);
             CS.Commit();
-            // TODO: Add insert logic here
+          
 
             return RedirectToAction("Create");
 
@@ -66,11 +81,12 @@ namespace Web.Controllers
 
         // POST: Claim/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, reclamation claim)
         {
             try
             {
-                // TODO: Add update logic here
+                //DateTime dateclot = DateTime.Now;
+                //claim.dateclose = dateclot;
 
                 return RedirectToAction("Index");
             }

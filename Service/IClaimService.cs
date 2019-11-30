@@ -10,8 +10,7 @@ namespace Service
 {
    public interface IClaimService : IService<reclamation>
     {
-
-
-
+        IEnumerable<reclamation> getListByEval(String eval);
+        IEnumerable<reclamation> getListByUser(String usr);
     }
 }
