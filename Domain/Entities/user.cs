@@ -21,7 +21,15 @@ namespace Domain.Entities
             formations = new HashSet<formation>();
             missions = new HashSet<mission>();
             projects = new HashSet<project>();
+           publications = new HashSet<publication>();
+
         }
+        public user(String cin)
+        {
+            this.cin = cin;
+        }
+      
+
 
         public int id { get; set; }
 
@@ -101,5 +109,8 @@ namespace Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<publication> publications { get; set; }
+
     }
 }
