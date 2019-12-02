@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>Liste des Reclamations</h2>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <style>
     .search-panel {
         position: center;
@@ -23,7 +23,7 @@
     }
 </style>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success"><i class="fa fa-plus"></i>@Html.ActionLink("Nouvelle  Reclamation ", "Create") </button>
 </p>
 
 <br />
@@ -102,17 +102,17 @@
             @Html.DisplayFor(modelItem => item.evaluation_id)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID }) |
-            @Html.ActionLink("Colture", "Delete", new { id = item.ReclmationID }) |
+            <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>
+            <button class="btn btn-danger"> @Html.ActionLink("Colture", "Delete", new { id = item.ReclmationID, Style = "color:White;" }) </button>
         </td>
     </tr>
     }
 
 </table>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+@*<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.table').dataTable();
-    });</script>
+    });</script>*@

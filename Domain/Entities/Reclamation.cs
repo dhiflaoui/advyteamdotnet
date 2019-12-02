@@ -52,7 +52,7 @@ namespace Domain.Entities
         public string descp { get; set; }
 
         [StringLength(255)]
-        [Display(Name = "Importer fichier")]
+        [Display(Name = "fichier")]
         public string fich { get; set; }
 
         [StringLength(255)]

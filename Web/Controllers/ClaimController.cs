@@ -32,7 +32,10 @@ namespace Web.Controllers
         // GET: Claim
         public ActionResult Index()
         {
-            //return liste des produits
+            int o = (int)Statut.Ouvert; 
+            int r = (int)Statut.Resolu;
+            int e = (int)Statut.Enattente;
+            int c = (int)Statut.Cloture;
             return View(CS.GetAll());
         }
 

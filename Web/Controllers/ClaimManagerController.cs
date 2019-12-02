@@ -1,15 +1,21 @@
-﻿using Domain.Entities;
+﻿using Data;
+using Domain.Entities;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Web.Controllers
 {
+    
+
     public class ClaimManagerController : Controller
     {
+        private AdvyteamContext db = new AdvyteamContext();
         IClaimService CS;
         IEvalService EV;
         IUserService US;
@@ -22,7 +28,7 @@ namespace Web.Controllers
         // GET: ClaimManager
         public ActionResult Index(reclamation claim)
         {
-            
+
             //string statut = ((int)claim.statut).ToString();
             return View(CS.GetAll());
         }
@@ -60,24 +66,34 @@ namespace Web.Controllers
         // GET: ClaimManager/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            reclamation claim = db.reclamations.Find(id);
+            if (claim == null)
+            {
+                return HttpNotFound();
+            }
+            return View(claim);
         }
 
         // POST: ClaimManager/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
         {
-            try
-            {
-                // TODO: Add update logic here
 
+            if (ModelState.IsValid)
+            {
+                claim.statut = Statut.Enattente;
+                db.Entry(claim).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(claim);
         }
+    
 
         // GET: ClaimManager/Delete/5
         public ActionResult Delete(int id)
