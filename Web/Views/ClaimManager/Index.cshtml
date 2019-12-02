@@ -1,0 +1,191 @@
+﻿@model IEnumerable<Domain.Entities.reclamation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<style>
+    .open {
+        color: #00fa6c;
+        position: center;
+    }
+
+    #close {
+        color: #eb0f0f;
+    }
+
+    .titre {
+        position: center;
+    }
+</style>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p><h1 class="open">  Ticket Ouverts / Resolu  </h1></p>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.evaluation_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.titreclaim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descp)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.fich)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reponse)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.dateopen)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            if (item.statut == 0 )
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.statut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.user_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.evaluation_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titreclaim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descp)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fich)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reponse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateopen)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ReclmationID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ReclmationID })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+<br><br />
+<br><br />
+<br><br />
+<div ><h1 id="close"> Ticket  En attente /clotures </h1></div>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.evaluation_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.titreclaim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fich)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reponse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateclose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateopen)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        //if (item.statut ==  1 )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.statut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.evaluation_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titreclaim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descp)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fich)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reponse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateclose)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateopen)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ReclmationID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReclmationID })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

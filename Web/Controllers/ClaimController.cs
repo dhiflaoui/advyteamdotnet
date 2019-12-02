@@ -8,6 +8,8 @@ using Service;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using Data;
+using System.Data.Entity;
 
 namespace Web.Controllers
 {
@@ -17,18 +19,35 @@ namespace Web.Controllers
         IEvalService EV;
         IUserService US;
         
-        private Statut ouvert;
         
+
+        private AdvyteamContext db = new AdvyteamContext();
         public ClaimController()
         {
             CS = new ClaimService();
             EV = new EvalService();
             US= new UserService();
         }
+
         // GET: Claim
         public ActionResult Index()
         {
+            //return liste des produits
             return View(CS.GetAll());
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
+            IEnumerable<reclamation> reclamations = CS.GetAll();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reclamations = reclamations.Where(m => m.user_id.ToString().Contains(searchString)).ToList();
+            }
+            return View(reclamations);
         }
 
         // GET: Claim/Details/5
@@ -66,7 +85,9 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(reclamation claim, HttpPostedFileBase file)
         {
-            claim.statut = ouvert;
+            string s = ((int)claim.statut).ToString();
+           
+            claim.statut = Statut.Ouvert;
             DateTime dateouvr = DateTime.Now;
             claim.dateopen = dateouvr;
             // //file
@@ -82,23 +103,23 @@ namespace Web.Controllers
             CS.Commit();
 
 
-           // //mail send
-           // SmtpClient client = new SmtpClient();
-           // client.Host = "smtp.gmail.com";
-           // client.Port = 587;
-           // client.UseDefaultCredentials = false;
-           // client.EnableSsl = true;
-           // MailMessage mailMessage = new MailMessage();
-           // mailMessage.From = new MailAddress("projectd308@gmail.com");
-           // mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
-           // mailMessage.Subject = "Information sur votre Reclamtion";
-           // var body = "<p>Merci pour votre reclamation ,Pour bien suivi votre réclamation ,ç'est votre numéro de ticket: {0} ,Date d'ouverture {1}</p>";
-           // mailMessage.IsBodyHtml = true;
-           // mailMessage.Body = string.Format(body, claim.ReclmationID, claim.dateopen);
-           //// mailMessage.Body = "thanks for your claim";
-           // NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
-           // client.Credentials = nc;
-           // client.Send(mailMessage);
+            // //mail send
+            // SmtpClient client = new SmtpClient();
+            // client.Host = "smtp.gmail.com";
+            // client.Port = 587;
+            // client.UseDefaultCredentials = false;
+            // client.EnableSsl = true;
+            // MailMessage mailMessage = new MailMessage();
+            // mailMessage.From = new MailAddress("projectd308@gmail.com");
+            // mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
+            // mailMessage.Subject = "Reclamtion enregistrée avec succès";
+            // var body = "<p>Merci pour votre reclamation ,Pour bien suivi votre réclamation ,ç'est votre numéro de ticket: "{0}" ,Date d'ouverture du reclamation est le {1}</p>";
+            // mailMessage.IsBodyHtml = true;
+            // mailMessage.Body = string.Format(body, claim.ReclmationID, claim.dateopen);
+            //// mailMessage.Body = "thanks for your claim";
+            // NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
+            // client.Credentials = nc;
+            // client.Send(mailMessage);
 
 
             return RedirectToAction("Create");
@@ -108,46 +129,52 @@ namespace Web.Controllers
         // GET: Claim/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            reclamation claim = db.reclamations.Find(id);
+            if (claim == null)
+            {
+                return HttpNotFound();
+            }
+            return View(claim);
         }
 
         // POST: Claim/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, reclamation claim)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
         {
-            try
+            
+            if (ModelState.IsValid)
             {
-                //DateTime dateclot = DateTime.Now;
-                //claim.dateclose = dateclot;
-
+                claim.statut = Statut.Enattente;
+                db.Entry(claim).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(claim);
         }
 
         // GET: Claim/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(CS.GetById(id));
         }
 
         // POST: Claim/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(reclamation claim)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            DateTime dateclot = DateTime.Now;
+            claim.dateclose = dateclot;
+            claim.statut = Statut.Cloture;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            db.Entry(claim).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
