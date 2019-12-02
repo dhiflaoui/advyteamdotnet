@@ -23,7 +23,7 @@ namespace Web.Controllers
         public ActionResult Index(reclamation claim)
         {
             
-            string statut = ((int)claim.statut).ToString();
+            //string statut = ((int)claim.statut).ToString();
             return View(CS.GetAll());
         }
 

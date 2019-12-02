@@ -73,10 +73,10 @@ namespace Web.Controllers
         {
             //return list deroulent de evaluation
             var ListEval = EV.GetAll();
-            ViewBag.evaluation_id = new SelectList(ListEval, "id ", "Titre_Eval");
+            ViewBag.EvaluationId = new SelectList(ListEval, "id ", "Titre_Eval");
             //return list deroulent users name
             var ListUser = US.GetAll();
-            ViewBag.user_id = new SelectList(ListUser, "id ", "nom"+ "prenom");
+            ViewBag.UserID = new SelectList(ListUser, "id ", "nom");
 
             return View();
         }
@@ -85,44 +85,57 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(reclamation claim, HttpPostedFileBase file)
         {
+            int evid = Int32.Parse(Request.Form["EvaluationId"].ToString());
+            int usid = Int32.Parse(Request.Form["UserID"].ToString());
+
             string s = ((int)claim.statut).ToString();
-           
-            claim.statut = Statut.Ouvert;
-            DateTime dateouvr = DateTime.Now;
-            claim.dateopen = dateouvr;
-            // //file
-            //claim.fich = file.FileName;
-            // if (file.ContentLength > 0)
+            var score = EV.GetAll().Where(m => m.id == evid).Any(x => x.score_Manager >= 15);
+           if(score)
+            {
+                claim.user_id = usid ;
+                claim.evaluation_id = evid;
+                claim.statut = Statut.Ouvert;
+                DateTime dateouvr = DateTime.Now;
+                claim.dateopen = dateouvr;
+                // //file
+                //claim.fich = file.FileName;
+                // if (file.ContentLength > 0)
 
-            // {
-            //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
-            //     file.SaveAs(path);
-            // }
+                // {
+                //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
+                //     file.SaveAs(path);
+                // }
 
-            CS.Add(claim);
-            CS.Commit();
-
-
-            // //mail send
-            // SmtpClient client = new SmtpClient();
-            // client.Host = "smtp.gmail.com";
-            // client.Port = 587;
-            // client.UseDefaultCredentials = false;
-            // client.EnableSsl = true;
-            // MailMessage mailMessage = new MailMessage();
-            // mailMessage.From = new MailAddress("projectd308@gmail.com");
-            // mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
-            // mailMessage.Subject = "Reclamtion enregistrée avec succès";
-            // var body = "<p>Merci pour votre reclamation ,Pour bien suivi votre réclamation ,ç'est votre numéro de ticket: "{0}" ,Date d'ouverture du reclamation est le {1}</p>";
-            // mailMessage.IsBodyHtml = true;
-            // mailMessage.Body = string.Format(body, claim.ReclmationID, claim.dateopen);
-            //// mailMessage.Body = "thanks for your claim";
-            // NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
-            // client.Credentials = nc;
-            // client.Send(mailMessage);
+                CS.Add(claim);
+                CS.Commit();
 
 
-            return RedirectToAction("Create");
+                // //mail send
+                // SmtpClient client = new SmtpClient();
+                // client.Host = "smtp.gmail.com";
+                // client.Port = 587;
+                // client.UseDefaultCredentials = false;
+                // client.EnableSsl = true;
+                // MailMessage mailMessage = new MailMessage();
+                // mailMessage.From = new MailAddress("projectd308@gmail.com");
+                // mailMessage.To.Add("dhiflaoui.belgacem@gmail.com");
+                // mailMessage.Subject = "Reclamtion enregistrée avec succès";
+                // var body = "<p>Merci pour votre reclamation ,Pour bien suivi votre réclamation ,ç'est votre numéro de ticket: "{0}" ,Date d'ouverture du reclamation est le {1}</p>";
+                // mailMessage.IsBodyHtml = true;
+                // mailMessage.Body = string.Format(body, claim.ReclmationID, claim.dateopen);
+                //// mailMessage.Body = "thanks for your claim";
+                // NetworkCredential nc = new NetworkCredential("projectd308@gmail.com", "1234578/*" );
+                // client.Credentials = nc;
+                // client.Send(mailMessage);
+
+
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
 
         }
 

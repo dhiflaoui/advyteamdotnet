@@ -84,10 +84,10 @@
     </div>*@
 
 
-    @*<div class="form-group">
+    <div class="form-group">
             @Html.LabelFor(model => model.evaluation_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("evaluation_id", (SelectList)ViewData["ListEval"])
+                @Html.DropDownList("EvaluationId", (SelectList)ViewData["ListEval"])
                 @Html.ValidationMessageFor(model => model.evaluation_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -95,10 +95,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("user_id", (SelectList)ViewData["ListUser"])
+                @Html.DropDownList("UserID", (SelectList)ViewData["ListUser"])
                 @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -108,7 +108,7 @@
 
     <script type="text/javascript">
         function ajout() {
-            if (confirm("vous voulez faire ce reclamation ? RQ: 'aucun modification est autrise apres l'ajout' ")) {
+            if (confirm("vous voulez faire ce reclamation ? RQ: 'aucun modification est autorisé apres l'ajout' ")) {
                 return true;
             } else {
                 return false;

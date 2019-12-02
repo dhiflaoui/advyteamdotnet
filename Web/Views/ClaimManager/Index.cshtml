@@ -60,10 +60,9 @@
 
 
         @foreach (var item in Model)
+
         {
-            if (item.statut == 0 )
-            {
-                <tr>
+               <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.statut)
                     </td>
@@ -95,7 +94,7 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.ReclmationID })
                     </td>
                 </tr>
-            }
+            
         }
     </table>
 </div>
