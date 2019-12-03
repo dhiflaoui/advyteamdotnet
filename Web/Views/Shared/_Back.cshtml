@@ -1,0 +1,355 @@
+﻿@using Domain.Entities
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    @{
+        ViewBag.Title = "FormatioEnLigne/Index";
+
+    }
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <link rel="icon" type="image/x-icon" href=@Url.Content("/Content/favicon.ico")>
+    <title>Angle - Bootstrap Admin Template</title><!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href=@Url.Content("/css/mystyle.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/css/quiz.css")>
+    <link rel="stylesheet" href=@Url.Content("/Scripts/quiz.js")>
+
+    <link rel="stylesheet" href=@Url.Content("/Content/css/liste.css")>
+    <link rel="stylesheet" href=@Url.Content("/Scripts/liste.js")>
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/%40fortawesome/fontawesome-free/css/brands.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/%40fortawesome/fontawesome-free/css/regular.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/%40fortawesome/fontawesome-free/css/solid.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/%40fortawesome/fontawesome-free/css/fontawesome.css")><!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/simple-line-icons/css/simple-line-icons.css")><!-- ANIMATE.CSS-->
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/animate.css/animate.css")><!-- WHIRL (spinners)-->
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/whirl/dist/whirl.css")><!-- =============== PAGE VENDOR STYLES ===============-->
+    <!-- WEATHER ICONS-->
+    <link rel="stylesheet" href=@Url.Content("/Content/vendor/weather-icons/css/weather-icons.css")><!-- =============== BOOTSTRAP STYLES ===============-->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/bootstrap.css") id="bscss"><!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/app.css") id="maincss">
+</head>
+<body>
+
+    <div class="wrapper">
+
+
+        <header class="topnavbar-wrapper">
+            <!-- START Top Navbar--> <nav class="navbar topnavbar">
+                <!-- START navbar header-->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">
+                        <div class="brand-logo">
+                            <img class="img-fluid" src=@Url.Content("/Content/img/logo.png") alt="App Logo" />
+                        </div>
+                        <div class="brand-logo-collapsed">
+                            <img class="img-fluid" src=@Url.Content("/Content/img/logo-single.png") alt="App Logo" />
+                        </div>
+                    </a>
+                </div>
+                <!-- END navbar header--> <!-- START Left navbar-->
+                <ul class="navbar-nav mr-auto flex-row">
+                    <li class="nav-item">
+                        <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                        <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#"
+                           data-trigger-resize="" data-toggle-state="aside-collapsed">
+                            <em class="fas fa-bars"></em>
+                        </a>
+                        <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                        <a class="nav-link sidebar-toggle d-md-none" href="#"
+                           data-toggle-state="aside-toggled" data-no-persist="true">
+                            <em class="fas fa-bars"></em>
+                        </a>
+                    </li>
+                    <!-- START User avatar toggle-->
+                    <li class="nav-item d-none d-md-block">
+                        <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                        <a class="nav-link" id="user-block-toggle" href="#user-block"
+                           data-toggle="collapse"><em class="icon-user"></em></a>
+                    </li>
+                    <!-- END User avatar toggle-->
+                    <!-- START lock screen-->
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link"
+                           href="lock.html" title="Lock screen"><em class="icon-lock"></em></a>
+                    </li>
+                    <!-- END lock screen-->
+                </ul>
+                <!-- END Left navbar--> <!-- START Right Navbar-->
+                <ul class="navbar-nav flex-row">
+                    <!-- Search icon-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                           data-search-open=""><em class="icon-magnifier"></em></a>
+                    </li>
+                    <!-- Fullscreen (only desktops)-->
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link"
+                           href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a>
+                    </li>
+                    <!-- START Alert menu-->
+                    <li class="nav-item dropdown dropdown-list">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                           data-toggle="dropdown">
+                            <em class="icon-bell"></em><span class="badge badge-danger">11</span>
+                        </a>
+                        <!-- START Dropdown menu-->
+                        <div class="dropdown-menu dropdown-menu-right animated flipInX">
+                            <div class="dropdown-item">
+                                <!-- START list group-->
+                                <div class="list-group">
+                                    <!-- list item-->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="media">
+                                            <div class="align-self-start mr-2">
+                                                <em class="fab fa-twitter fa-2x text-info"></em>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="m-0">New followers</p>
+                                                <p class="m-0 text-muted text-sm">1 new follower</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- list item-->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="media">
+                                            <div class="align-self-start mr-2">
+                                                <em class="fas fa-envelope fa-2x text-warning"></em>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="m-0">New e-mails</p>
+                                                <p class="m-0 text-muted text-sm">You have 10 new emails</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- list item-->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="media">
+                                            <div class="align-self-start mr-2">
+                                                <em class="fas fa-tasks fa-2x text-success"></em>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="m-0">Pending Tasks</p>
+                                                <p class="m-0 text-muted text-sm">11 pending task</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- last list item-->
+                                    <div class="list-group-item list-group-item-action">
+                                        <span class="d-flex align-items-center">
+                                            <span class="text-sm">More notifications</span><span class="badge badge-danger ml-auto">14</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- END list group-->
+                            </div>
+                        </div>
+                        <!-- END Dropdown menu-->
+                    </li>
+                    <!-- END Alert menu-->
+                    <!-- START Offsidebar button-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                           data-toggle-state="offsidebar-open" data-no-persist="true">
+                            <em class="icon-notebook"></em>
+                        </a>
+                    </li>
+                    <!-- END Offsidebar menu-->
+                </ul>
+                <!-- END Right Navbar--> <!-- START Search form-->
+                <form class="navbar-form" role="search"
+                      action="http://themicon.co/theme/angle/v4.5.5/static-html/app/search.html">
+                    <div class="form-group">
+                        <input class="form-control" type="text"
+                               placeholder="Type and hit enter ..." />
+                        <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
+                    </div>
+                    <button class="d-none" type="submit">Submit</button>
+                </form>
+                <!-- END Search form-->
+            </nav><!-- END Top Navbar-->
+        </header>
+        <!-- sidebar-->
+
+        <aside class="aside-container">
+            <!-- START Sidebar (left)-->
+            <div class="aside-inner">
+                <nav class="sidebar" data-sidebar-anyclick-close="">
+                    <!-- START sidebar nav-->
+                    <ul class="sidebar-nav">
+                        <!-- START user info-->
+                        <li class="has-user-block">
+                            <div class="collapse" id="user-block">
+                                <div class="item user-block">
+                                    <!-- User picture-->
+                                    <div class="user-block-picture">
+                                        <div class="user-block-status">
+                                            <img class="img-thumbnail rounded-circle" src=@Url.Content("/Content/img/user/02.jpg")
+                                                 alt="Avatar" width="60" height="60" />
+                                            <div class="circle bg-success circle-lg"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Name and Job-->
+
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END user info-->
+                        <!-- Iterates over all sidebar items-->
+                        <li class="nav-heading ">
+                            <span data-localize="sidebar.heading.HEADER">Main Navigation</span>
+                        </li>
+
+
+
+
+                        <li class=" ">
+                            <a href="#elements" title="Elements"
+                               data-toggle="collapse">
+                                <em class="icon-chemistry"></em><span data-localize="sidebar.nav.element.ELEMENTS">Gestion Foramtions</span>
+                            </a>
+                            <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
+                                <li class="sidebar-subnav-header">Elements</li>
+                                <li class=" ">
+
+                                    <a href="/FormationEnLigne/Index" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Liste des employes</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class=" ">
+                            <a href="#elements" title="Elements"
+                               data-toggle="collapse">
+                                <em class="icon-chemistry"></em><span data-localize="sidebar.nav.element.ELEMENTS">Gestion Formateur</span>
+                            </a>
+                            <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
+                                <li class="sidebar-subnav-header">Elements</li>
+                                <li class=" ">
+                                    <a href="/Formateur/Index" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Liste des formateur</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class=" ">
+                            <a href="#elements" title="Elements"
+                               data-toggle="collapse">
+                                <em class="icon-chemistry"></em><span data-localize="sidebar.nav.element.ELEMENTS">Gestion Qcm</span>
+                            </a>
+                            <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
+                                <li class="sidebar-subnav-header">Elements</li>
+                                <li class=" ">
+                                    <a href="/Qsm/Index" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Liste des qcm</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class=" ">
+                            <a href="#elements" title="Elements"
+                               data-toggle="collapse">
+                                <em class="icon-chemistry"></em><span data-localize="sidebar.nav.element.ELEMENTS">Gestion Participation</span>
+                            </a>
+                            <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
+                                <li class="sidebar-subnav-header">Elements</li>
+                                <li class=" ">
+                                    <a href="/Participation/Index" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Liste des participons</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class=" ">
+                            <a href="#elements" title="Elements"
+                               data-toggle="collapse">
+                                <em class="icon-chemistry"></em><span data-localize="sidebar.nav.element.ELEMENTS">Gestion Cours</span>
+                            </a>
+                            <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
+                                <li class="sidebar-subnav-header">Elements</li>
+                                <li class=" ">
+                                    <a href="/Cours/Index" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Liste des cours</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+
+
+                    </ul>
+                    <!-- END sidebar nav-->
+                </nav>
+            </div>
+            <!-- END Sidebar (left)-->
+        </aside>
+        <!-- offsidebar-->
+
+
+
+
+
+
+
+        <section class="section-container">
+            <div class="content-wrapper">
+                <div class="content-heading">
+                    <div>Dashboard Manager<small data-localize="dashboard.WELCOME"></small></div>
+                    <!-- START Language list-->
+                    <div class="ml-auto">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret" type="button" data-toggle="dropdown">English</button>
+                            <div class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort" role="menu"><a class="dropdown-item" href="#" data-set-lang="en">English</a><a class="dropdown-item" href="#" data-set-lang="es">Spanish</a></div>
+                        </div>
+                    </div>
+                    <!-- END Language list-->
+                </div>
+                <!-- START cards box-->
+
+                @RenderBody()
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- MODERNIZR-->
+    <script src=@Url.Content("/Content/vendor/modernizr/modernizr.custom.js")></script><!-- STORAGE API-->
+    <script src=@Url.Content("/Content/vendor/js-storage/js.storage.js")></script><!-- SCREENFULL-->
+    <script src=@Url.Content("/Content/vendor/screenfull/dist/screenfull.js")></script><!-- i18next-->
+    <script src=@Url.Content("/Content/vendor/i18next/i18next.js")></script>
+    <script src=@Url.Content("/Content/vendor/i18next-xhr-backend/i18nextXHRBackend.js")></script>
+    <script src=@Url.Content("/Content/vendor/jquery/dist/jquery.js")></script>
+    <script src=@Url.Content("/Content/vendor/popper.js/dist/umd/popper.js")></script>
+    <script src=@Url.Content("/Content/vendor/bootstrap/dist/js/bootstrap.js")></script><!-- =============== PAGE VENDOR SCRIPTS ===============-->
+    <!-- SLIMSCROLL-->
+    <script src=@Url.Content("/Content/vendor/jquery-slimscroll/jquery.slimscroll.js")></script><!-- SPARKLINE-->
+    <script src=@Url.Content("/Content/vendor/jquery-sparkline/jquery.sparkline.js")></script><!-- FLOT CHART-->
+    <script src=@Url.Content("/Content/vendor/flot/jquery.flot.js")></script>
+    <script src=@Url.Content("/Content/vendor/jquery.flot.tooltip/js/jquery.flot.tooltip.js")></script>
+    <script src=@Url.Content("/Content/vendor/flot/jquery.flot.resize.js")></script>
+    <script src=@Url.Content("/Content/vendor/flot/jquery.flot.pie.js")></script>
+    <script src=@Url.Content("/Content/vendor/flot/jquery.flot.time.js")></script>
+    <script src=@Url.Content("/Content/vendor/flot/jquery.flot.categories.js")></script>
+    <script src=@Url.Content("/Content/vendor/jquery.flot.spline/jquery.flot.spline.js")></script><!-- EASY PIE CHART-->
+    <script src=@Url.Content("/Content/vendor/easy-pie-chart/dist/jquery.easypiechart.js")></script><!-- MOMENT JS-->
+    <script src=@Url.Content("/Content/vendor/moment/min/moment-with-locales.js")></script><!-- =============== APP SCRIPTS ===============-->
+    <script src=@Url.Content("/Content/js/app.js")></script>
+
+</body>
+</html>

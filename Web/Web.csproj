@@ -570,6 +570,7 @@
     <Content Include="Views\ClaimManager\Edit.cshtml" />
     <Content Include="Views\Claim\Edit2.cshtml" />
     <Content Include="Views\ClaimManager\Delete.cshtml" />
+    <Content Include="Views\Shared\_Back.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,7 +48,7 @@ namespace Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                reclamations = reclamations.Where(m => m.user_id.ToString().Contains(searchString)).ToList();
+                reclamations = reclamations.Where(m => m.ReclmationID.ToString().Contains(searchString)).ToList();
             }
             return View(reclamations);
         }

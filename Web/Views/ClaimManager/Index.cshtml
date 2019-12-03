@@ -2,11 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_myLayout.cshtml";
+    Layout = "~/Views/Shared/_Back.cshtml";
 }
 
 <h2>Liste des reclamations</h2>
-<link hhref="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" src="~/css/dataTables.bootstrap.min.css" />
 <script type="text/javascript" src="~/js/dataTables.bootstrap.min.js"></script>
@@ -28,86 +27,151 @@
     .titre {
         position: center;
     }
+
+    button {
+        background: #2196F3;
+        color: white;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background: #0b7dda;
+        }
 </style>
 
 
 
 <p><h1 class="open">  Ticket Ouverts   </h1></p>
- @*table-striped table-responsive*@
-<div>
-    <table class="table table-hover dataTable " id="tab1">
-        <thead>
-            <tr style="background-color:#3d566e; color:#ecf0f1">
-                <th>
-                    @Html.DisplayNameFor(model => model.statut)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.user_id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.evaluation_id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.titreclaim)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.descp)
-                </th>
+<br />
+<br />
 
-                <th>
-                    @Html.DisplayNameFor(model => model.fich)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.reponse)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.dateopen)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
+        @using (Html.BeginForm())
+    {
+        <div class="search-panel">
+        <div class="row">
+            <div class="col">
 
-        @foreach (var item in Model)
+            </div>
+            <div class="col">
 
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.statut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.user_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.evaluation_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.titreclaim)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.descp)
-                </td>
+            </div>
+            <div class="col">
+               
+            </div>
+            <div class="col">
+                <input class="form-control" id="s" placeholder="Enter LE STATUT"> @*@Html.TextBox("searchstring")*@  <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="col">
+              
+            </div>
+        </div>
+        <br />
+        <div class="row">
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.fich)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.reponse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateopen)
-                </td>
-                <td>
+        </div>
+    </div>
+    }
+  
 
-                    <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>
-                </td>
-            </tr>
 
-        }
+<body>
+    <div>
+        <table class="table table-hover dataTable " id="tab1">
+            <thead>
+                <tr style="background-color:#3d566e; color:#ecf0f1">
+                    <th data-priority="1">
 
-    </table>
+                        @Html.DisplayNameFor(model => model.statut)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.user_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.evaluation_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.titreclaim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descp)
+                    </th>
 
-</div>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fich)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.reponse)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateopen)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.statut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.user_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.evaluation_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titreclaim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descp)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fich)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reponse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateopen)
+                    </td>
+                    <td>
+
+                        <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $("#s").on("keyup", function () {
+        var t = $(this).val();
+        $("table tr").each(function (results) {
+            if (results !== 0) {
+                var id = $(this).find("td:nth-child(1)").text();
+                if (id.indexOf(t) == 0 && id.toLowerCase().indexOf(t.toLowerCase()) < 0) {
+                    $(this).hide();
+
+                } else {
+                    $(this).show();
+                }
+            }
+        });
+
+    });
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -202,3 +266,9 @@
     }
 
 </table>
+
+
+
+
+
+

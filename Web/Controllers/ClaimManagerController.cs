@@ -34,6 +34,18 @@ namespace Web.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
+            IEnumerable<reclamation> reclamations = CS.GetAll();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reclamations = reclamations.Where(m => m.statut.ToString().Contains(searchString)).ToList();
+            }
+            return View(reclamations);
+        }
+
 
         // GET: ClaimManager/Details/5
         public ActionResult Details(int id)
