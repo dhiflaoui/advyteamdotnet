@@ -100,16 +100,17 @@ namespace Web.Controllers
                 claim.statut = Statut.Ouvert;
                 DateTime dateouvr = DateTime.Now;
                 claim.dateopen = dateouvr;
-                // //file
-                //claim.fich = file.FileName;
-                // if (file.ContentLength > 0)
-
-                // {
-                //     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
-                //     file.SaveAs(path);
-                // }
-
+                 //file
+                claim.fich = file.FileName;
                 CS.Add(claim);
+                 if (file.ContentLength > 0)
+
+                 {
+                     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
+                     file.SaveAs(path);
+                 }
+
+                //CS.Add(claim);
                 CS.Commit();
 
 
@@ -132,11 +133,12 @@ namespace Web.Controllers
                 // client.Send(mailMessage);
 
 
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
+            
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             
 
@@ -168,29 +170,69 @@ namespace Web.Controllers
                 claim.statut = Statut.Enattente;
                 db.Entry(claim).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+               
+            }
+            return RedirectToAction("Index");
+            //return View(claim);
+        }
+
+        // GET: Claim/Edit/5
+        public ActionResult Edit2(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            reclamation claim = db.reclamations.Find(id);
+            if (claim == null)
+            {
+                return HttpNotFound();
             }
             return View(claim);
         }
 
-        // GET: Claim/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View(CS.GetById(id));
-        }
-
-        // POST: Claim/Delete/5
+        // POST: Claim/Edit/5
         [HttpPost]
-        public ActionResult Delete(reclamation claim)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit2([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
         {
-            DateTime dateclot = DateTime.Now;
-            claim.dateclose = dateclot;
-            claim.statut = Statut.Cloture;
 
-            db.Entry(claim).State = EntityState.Modified;
-            db.SaveChanges();
-
+            if (ModelState.IsValid)
+            {
+                DateTime dateclot = DateTime.Now;
+                claim.dateclose = dateclot;
+                claim.statut = Statut.Cloture;
+                db.Entry(claim).State = EntityState.Modified;
+                db.SaveChanges();
+              
+            }
             return RedirectToAction("Index");
         }
+
+
+
+
+
+        //// GET: Claim/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    reclamation claim = db.reclamations.Find(id);
+        //    return View(claim);
+        //}
+
+        //// POST: Claim/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")]reclamation claim)
+        //{
+        //    DateTime dateclot = DateTime.Now;
+        //    claim.dateclose = dateclot;
+        //    claim.statut = Statut.Cloture;
+        //    //CS.Add(claim);
+        //    //CS.Commit();        
+        //    db.Entry(claim).State = EntityState.Modified;
+        //    db.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
     }
 }

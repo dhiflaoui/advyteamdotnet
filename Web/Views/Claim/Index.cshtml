@@ -60,6 +60,12 @@
             @Html.DisplayNameFor(model => model.titreclaim)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.descp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fich)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.reponse)
         </th>
         <th>
@@ -87,6 +93,12 @@
             @Html.DisplayFor(modelItem => item.titreclaim)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+        <td>
+            <img src="~/Content/upload/@Html.DisplayFor(modelItem => item.fich)" style="width: 50px;height: 50px" />
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.reponse)
         </td>
         <td>
@@ -102,8 +114,8 @@
             @Html.DisplayFor(modelItem => item.evaluation_id)
         </td>
         <td>
-            <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>
-            <button class="btn btn-danger"> @Html.ActionLink("Colture", "Delete", new { id = item.ReclmationID, Style = "color:White;" }) </button>
+            <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Réouvrir", "Edit", new { id = item.ReclmationID })</button>
+            <button class="btn btn-warning"> @Html.ActionLink("Colture", "Edit2", new { id = item.ReclmationID, Style = "color:White;" }) </button>
         </td>
     </tr>
     }

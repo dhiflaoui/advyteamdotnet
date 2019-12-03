@@ -98,23 +98,17 @@ namespace Web.Controllers
         // GET: ClaimManager/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(CS.GetById(id));
         }
 
         // POST: ClaimManager/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, reclamation claim)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            claim = CS.GetById(id);
+            CS.Delete(claim);
+            CS.Commit();
+            return RedirectToAction("Index");
         }
     }
 }

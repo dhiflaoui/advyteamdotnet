@@ -568,7 +568,8 @@
     <Content Include="Views\Claim\Index.cshtml" />
     <Content Include="Views\ClaimManager\Index.cshtml" />
     <Content Include="Views\ClaimManager\Edit.cshtml" />
-    <Content Include="Views\Claim\Delete.cshtml" />
+    <Content Include="Views\Claim\Edit2.cshtml" />
+    <Content Include="Views\ClaimManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,12 +7,11 @@ namespace Domain.Entities
     using System.Data.Entity.Spatial;
     public enum Statut
     {
-        
+        Cloture,
         Ouvert ,
         Resolu ,
         Enattente,
-        [Display(Name = "En attente")]
-        Cloture 
+        
     };
     //public static class statut
     //{
