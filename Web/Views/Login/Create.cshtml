@@ -3,103 +3,250 @@
     ViewBag.Title = "Create";
 
 }
+<html>
+<head>
+    <style>
+        * Specific styles of signin component */
+        /*
+        * General styles
+        */
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        }
 
-@using CaptchaMvc.HtmlHelpers;
+        .card-container.card {
+            max-width: 350px;
+            padding: 40px 40px;
+        }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        .btn {
+            font-weight: 700;
+            height: 36px;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+        }
+
+        /*
+        * Card component
+        */
+        .card {
+            background-color: #F7F7F7;
+            /* just in case there no content*/
+            padding: 20px 25px 30px;
+            margin: 0 auto 25px;
+            margin-top: 50px;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img-card {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 10px;
+            display: block;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        /*
+        * Form styles
+        */
+        .profile-name-card {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0 0;
+            min-height: 1em;
+        }
+
+        .reauth-email {
+            display: block;
+            color: #404040;
+            line-height: 2;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin #inputEmail,
+        .form-signin #inputPassword {
+            direction: ltr;
+            height: 44px;
+            font-size: 16px;
+        }
+
+        .form-signin input[type=email],
+        .form-signin input[type=password],
+        .form-signin input[type=text],
+        .form-signin button {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin .form-control:focus {
+            border-color: rgb(104, 145, 162);
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+        }
+
+        .btn.btn-signin {
+            /*background-color: #4d90fe; */
+            background-color: rgb(104, 145, 162);
+            /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+            padding: 0px;
+            font-weight: 700;
+            font-size: 14px;
+            height: 36px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: none;
+            -o-transition: all 0.218s;
+            -moz-transition: all 0.218s;
+            -webkit-transition: all 0.218s;
+            transition: all 0.218s;
+        }
+
+            .btn.btn-signin:hover,
+            .btn.btn-signin:active,
+            .btn.btn-signin:focus {
+                background-color: rgb(12, 97, 33);
+            }
+
+        .forgot-password {
+            color: rgb(104, 145, 162);
+        }
+
+            .forgot-password:hover,
+            .forgot-password:active,
+            .forgot-password:focus {
+                color: rgb(12, 97, 33);
+            }
+            #innupt{
+                width:180px;
+                height:15px;
+
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="card card-container">
+          
+            <img id="profile-img" class="profile-img-card" src="images/logo.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            @using CaptchaMvc.HtmlHelpers;
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
 
-    <div class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-6">
-                    <div class="white-box">
-                        <div class="about-title">
-                            <h3>S'authentifier</h3>
-                        </div><!-- end about-title -->
-                        <div class="about-content">
 
-                            <center><div class="logo">
-    <h1><a href="index.html"><img src="images/logo.png" alt="" width="140" /></a></h1>
-</div></center>
-                            <br />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <br />
+
+                <center>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                     
+                        <div class="col-md-10">
+                     <h1>cin :</h1>       @Html.EditorFor(model => model.cin, new { htmlAttributes = new { @class = "form-control", id="innupt", placeholder="  entrer votre carte d'identité " } })
+                            @Html.ValidationMessageFor(model => model.cin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    </center>
+                        <br />
+                        <br />
+
+
+                        <center>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.cin, htmlAttributes: new { @class = "control-label col-md-2" })
+                                
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.cin, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.cin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <br />
-                            <br />
-
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.motdp, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.motdp, new { htmlAttributes = new { @class = "form-control" } })
+                                    <h1>password :</h1>         @Html.PasswordFor(model => model.motdp, new { htmlAttributes = new { @class = "form-control",id= "innupt" } })
                                     @Html.ValidationMessageFor(model => model.motdp, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <br />
-                            <center>
-                                <div class="form-group">
-                                    @Html.Captcha(5)
-                                    <br />
-                                    <b>@ViewBag.error</b>
-                                    <br />
-
-                                </div>
-                            </center>
-                            <b>@ViewBag.NoUSER</b>
-                            <br />
-                            <br />
+                        </center>
+                        <center>
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="S'authentifier" class="btn btn-primary" />
-                                </div>
+                                @Html.Captcha(5)
+                                <br />
+                                <b>@ViewBag.error</b>
+                                <br />
+
+                            </div>
+                        </center>
+                        <b>@ViewBag.NoUSER</b>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="S'authentifier'" class="btn btn-lg btn-primary btn-block btn-signin" />
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
 
 
-<script src="~/Scripts/jquery-3.1.0.js"></script>
-<link href="~/content/toastr.css" rel="stylesheet" />
-<script src="~/Scripts/toastr.js"></script>
+                        }
+</div><!-- /card-container -->
+    </div><!-- /container -->
 
-@if (TempData["BadCredentials"] != null)
-{
-    <script type="text/javascript">
 
-        toastr["error"]("Erreur", "Vérifier vos cordoonés")
+    <script src="~/Scripts/jquery-3.1.0.js"></script>
+    <link href="~/content/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
 
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
+    @if (TempData["BadCredentials"] != null)
+    {
+        <script type="text/javascript">
 
-    </script>
-}
+            toastr["error"]("Erreur", "Vérifier vos cordoonés")
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+        </script>
+    }
+</body>
+</html>

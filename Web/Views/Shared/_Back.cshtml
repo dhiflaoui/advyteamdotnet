@@ -185,24 +185,28 @@
                             <div class="collapse" id="user-block">
                                 <div class="item user-block">
                                     <!-- User picture-->
+                                    @{
+                                        var emp1 = (user)Session["EmployeeSessionData1"];
+
+                                    }
+                                    
                                     <div class="user-block-picture">
                                         <div class="user-block-status">
-                                            <img class="img-thumbnail rounded-circle" src=@Url.Content("/Content/img/user/02.jpg")
+                                            <img class="img-thumbnail rounded-circle" src=@Url.Content("/Content/upload/"+@emp1.photo)
                                                  alt="Avatar" width="60" height="60" />
                                             <div class="circle bg-success circle-lg"></div>
                                         </div>
                                     </div>
                                     <!-- Name and Job-->
-@{
-    var emp1 = (user)Session["EmployeeSessionData1"];
-
-}                                    <div class="user-block-info">
+                                    <div class="user-block-info">
                                         <span class="user-block-name">Hello si, @emp1.nom</span><span class="user-block-role">@emp1.role
                                     </span>
                                          <span class="user-block-role">@emp1.specialite </span>
                                          <span class="user-block-role"> Salaire : @emp1.salaire</span>
                                          <span class="user-block-role">Solde Absence : @emp1.solde_absence</span>
                                          <span class="user-block-role">Solde Conge : @emp1.solde_absence </span>
+                                        <a class="dropdown-item" href="#">@Html.ActionLink("Mes PUB", "MesPub")</a>
+
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +219,7 @@
 
 
 
-
+                        @if(@emp1.role.Equals("RH")){
                         <li class=" ">
                             <a href="#elements" title="Elements"
                                data-toggle="collapse">
@@ -224,13 +228,19 @@
                             <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
                                 <li class="sidebar-subnav-header">Elements</li>
                                 <li class=" ">
-                                    <a href="/Mission/MissionManagerR" title="Buttons">
+                                    <a href="/Employe/Index" title="Buttons">
                                         <span data-localize="sidebar.nav.element.BUTTON">Liste des employes</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="/Employe/Create" title="Buttons">
+                                        <span data-localize="sidebar.nav.element.BUTTON">Nouveau Employe</span>
                                     </a>
                                 </li>
 
                             </ul>
                         </li>
+                        }
                         <li class=" ">
                             <a href="#elements" title="Elements"
                                data-toggle="collapse">
@@ -239,7 +249,7 @@
                             <ul class="sidebar-nav sidebar-subnav collapse" id="elements">
                                 <li class="sidebar-subnav-header">Elements</li>
                                 <li class=" ">
-                                    <a href="/Publication/Create" title="Buttons">
+                                    <a href="/Publication/allPub" title="Buttons">
                                         <span data-localize="sidebar.nav.element.BUTTON">Publications</span>
                                     </a>
                                 </li>

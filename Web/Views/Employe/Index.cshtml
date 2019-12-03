@@ -4,64 +4,71 @@
     Layout = "~/Views/Shared/_Back.cshtml";
 
 }
+<body>
+    <h2>Equipe Advyteam</h2>
 
-<h2>Equipe Advyteam</h2>
 
 
-
-<div class="card card-default">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Cin</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Email</th>
-                        <th>Mot de passe</th>
-                        <th>Photo</th>
-                        <th>Cv</th>
-                        <th>Ville</th>
-                        <th>Tel</th>
-                        <th>Solde Conge</th>
-                        <th>Solde Absence</th>
-                        <th>Salaire</th>
-                        <th>Role</th>
-                        <th>Specialite</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (var item in ViewBag.result)
-                    {
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@item.id</td>
-                            <td>@item.cin</td>
-                            <td>@item.nom</td>
-                            <td>@item.prenom</td>
-                            <td>@item.adresseMail</td>
-                            <td>@item.motdp</td>
-                            <td>@item.photo</td>
-                            <td>@item.cv</td>
-                            <td>@item.ville</td>
-                            <td>@item.tel</td>
-                            <td>@item.solde_conge</td>
-                            <td>@item.solde_absence</td>
-                            <td>@item.salaire</td>
-                            <td>@item.role</td>
-                            <td>@item.specialite</td>
-                            <td>
-                                @Html.ActionLink("Supprimer", "Delete", new { id = item.id })
-                            </td>
-
-
+                            <th>Photo</th>
+                            <th>Cin</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Mot de passe</th>
+                            <th>Photo</th>
+                            <th>Cv</th>
+                            <th>Ville</th>
+                            <th>Tel</th>
+                            <th>Solde Conge</th>
+                            <th>Solde Absence</th>
+                            <th>Salaire</th>
+                            <th>Role</th>
+                            <th>Specialite</th>
+                            <th>Action</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in ViewBag.result)
+                        {
+                            <tr>
+                                <td><div class="user-block-picture">
+    <div class="user-block-status">
+        <img class="img-thumbnail rounded-circle" src=@Url.Content("/Content/upload/"+@item.photo)
+             alt="Avatar" width="60" height="60" />
+        <div class="circle bg-success circle-lg"></div>
+    </div>
+</div></td>
+                                <td>@item.cin</td>
+                                <td>@item.nom</td>
+                                <td>@item.prenom</td>
+                                <td>@item.adresseMail</td>
+                                <td>@item.motdp</td>
+                                <td>@item.photo</td>
+                                <td>@item.cv</td>
+                                <td>@item.ville</td>
+                                <td>@item.tel</td>
+                                <td>@item.solde_conge</td>
+                                <td>@item.solde_absence</td>
+                                <td>@item.salaire</td>
+                                <td>@item.role</td>
+                                <td>@item.specialite</td>
+                                <td>
+                                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id })
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</body>

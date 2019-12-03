@@ -109,14 +109,20 @@ namespace Web.Controllers
                                 Session["EmployeeSessionData1"] = currentUser;
 
                             Session["EmployeeSessionData"] = currentUser.nom;
+                            //feedback fd = new feedback();
+                            //fd.id = 1;
+                            //fd.comment = " ";
 
+                            //List<feedback> test = new List<feedback>();
+                            //test.Add(fd);
+                            //Session["comm"] = test;
 
 
                             //JavaScriptSerializer j = new JavaScriptSerializer();
                             // object a = j.Deserialize(content, typeof(object));
 
                             //  return View(result);
-                            return RedirectToAction("Index", "Employe") ;
+                            return RedirectToAction("allPub", "Publication") ;
                           
 
 

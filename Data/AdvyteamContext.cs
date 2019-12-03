@@ -28,6 +28,11 @@ namespace Data
         public virtual DbSet<task> tasks { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<publication> publications { get; set; }
+        public virtual DbSet<feedback> feedbacks { get; set; }
+        public virtual DbSet<reactp> reactps { get; set; }
+
+
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -259,6 +264,9 @@ namespace Data
             modelBuilder.Entity<user>()
                 .Property(e => e.cv)
                 .IsUnicode(false);
+            modelBuilder.Entity<user>()
+                .Property(e => e.badge)
+                .IsUnicode(false);
 
             modelBuilder.Entity<user>()
                 .Property(e => e.motdp)
@@ -343,10 +351,35 @@ namespace Data
             modelBuilder.Entity<publication>()
                 .Property(e => e.statut)
                 .IsUnicode(false);
+
             modelBuilder.Entity<user>()
               .HasMany(e => e.publications)
               .WithOptional(e => e.user)
               .HasForeignKey(e => e.user_id);
+            modelBuilder.Entity<feedback>()
+                .Property(e => e.file)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<feedback>()
+                .Property(e => e.comment)
+                .IsUnicode(false);
+            modelBuilder.Entity<user>()
+              .HasMany(e => e.feedbacks)
+              .WithOptional(e => e.user)
+              .HasForeignKey(e => e.user_id);
+            modelBuilder.Entity<user>()
+              .HasMany(e => e.reactps)
+              .WithOptional(e => e.user)
+              .HasForeignKey(e => e.user_id);
+            modelBuilder.Entity<publication>()
+              .HasMany(e => e.feedbacks)
+              .WithOptional(e => e.publication)
+              .HasForeignKey(e => e.publication_id);
+            modelBuilder.Entity<publication>()
+              .HasMany(e => e.reactps)
+              .WithOptional(e => e.publication)
+              .HasForeignKey(e => e.user_id);
+
 
         }
     }

@@ -22,6 +22,11 @@ namespace Domain.Entities
             missions = new HashSet<mission>();
             projects = new HashSet<project>();
            publications = new HashSet<publication>();
+            feedbacks = new HashSet<feedback>();
+            reactps = new HashSet<reactp>();
+
+
+
 
         }
         public user(String cin)
@@ -59,6 +64,8 @@ namespace Domain.Entities
 
         [StringLength(255)]
         public string role { get; set; }
+        [StringLength(255)]
+        public string badge { get; set; }
 
         public double? salaire { get; set; }
 
@@ -111,6 +118,11 @@ namespace Domain.Entities
         public virtual ICollection<project> projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<publication> publications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<feedback> feedbacks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reactp> reactps { get; set; }
+
 
     }
 }
