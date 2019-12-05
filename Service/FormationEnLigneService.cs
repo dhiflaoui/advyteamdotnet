@@ -17,6 +17,11 @@ namespace Service
         public FormationEnLigneService() : base(wow)
         {
         }
-       }
+        public object getUer()
+        {
+            IEnumerable<formationenligne> fact = GetAll().Where(x => x.user_id.Equals(1));
+            return fact;
+        }
+    }
     }
 

@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Domain.Entities.formationenligne>
 
 @{
-    ViewBag.Title = "indexuser";
-}
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Back.cshtml";
 
+
+}
 <h2>Index</h2>
 
 <!DOCTYPE html>
@@ -13,22 +15,24 @@
     <title></title>
 </head>
 <body>
+
+
     <a href="@Url.Action("Create" , "formationenligne")">Add new formation </a>
+    <div class="wrapper">
+
+        <section class="products grid group">
+
+            @foreach (var p in Model)
+
+            {
 
 
-
-        @foreach (var p in Model)
-
-        {
-
-            
                 <article class="product">
                     <div class="product__inner">
 
                         <section class="product__image">
                             <img src=@Url.Content("/Content/upload/"+@p.image)></img>
                         </section>
-
 
                         <div class="product__details">
 
@@ -42,17 +46,20 @@
                             <section class="product__price">
                                 @p.objectifs
                             </section>
-                            <section class="product__price">
-                                @p.image
-                            </section>
-                           @* <div class="add-to-cart">@Html.Action("mesCours", "Cours", new { id = p.formationElLigneId })</div>*@
+                            <section class="product__price"></section>
 
                         </div><!-- /product__details -->
 
                     </div>
-                </article><!-- /product -->
-            }
-            
+                    @Html.ActionLink("MesCours", "MesCours", new { id = p.formationElLigneId })
 
+
+
+
+                </article><!-- /product -->
+
+            }
+        </section>
+    </div>
 </body>
 </html>

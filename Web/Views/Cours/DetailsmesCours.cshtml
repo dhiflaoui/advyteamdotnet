@@ -70,7 +70,7 @@
 </style>
 <p>
     @Html.ActionLink("Back to cours", "mesCours")
-    @Html.ActionLink("Valider", "mesCours")
+    <a href="@Url.Action("betha" , "Cours", new { id = Model.courId })">Valider </a>
 
 
 </p>

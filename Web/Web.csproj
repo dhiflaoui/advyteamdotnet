@@ -559,7 +559,7 @@
     <Content Include="Views\Cours\DetailsmesCours.cshtml" />
     <Content Include="Views\Cours\Edit.cshtml" />
     <Content Include="Views\Cours\Index.cshtml" />
-    <Content Include="Views\Cours\mesCours.cshtml" />
+    <Content Include="Views\Cours\MesCours.cshtml" />
     <Content Include="Views\Formateur\create.cshtml" />
     <Content Include="Views\Formateur\Delete.cshtml" />
     <Content Include="Views\Formateur\Index.cshtml" />

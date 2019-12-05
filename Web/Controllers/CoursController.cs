@@ -1,6 +1,8 @@
-﻿using Domain.Entities;
+﻿using Data;
+using Domain.Entities;
 using Service;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace Web.Controllers
         public int selectCoursId;
         public int selectformationId;
         public int selectpaticpationId;
+            AdvyteamContext db = new AdvyteamContext();
 
         IFormationEnLigneService fs;
         ICoursService cs;
@@ -55,9 +58,11 @@ namespace Web.Controllers
         {
             return View();
         }
-        public ActionResult mesCours()
+        public ActionResult MesCours()
         {
-                return View(cs.GetByformation(1));
+         //  IEnumerable <cours> fact = cs.GetAll().Where(x => x.formationEnLign_formationElLigneId.Equals(1));
+            
+            return View(cs.GetAll().Where(x=>x.formationEnLign_formationElLigneId.Equals(1)));
             //    // return View(cs.GetById(Convert.ToInt64(c.formationEnLign_formationElLigneId)));
             //}
             // int employeeId = 1;
@@ -130,11 +135,13 @@ namespace Web.Controllers
             cs.Commit();
             return RedirectToAction("Index");
         }
-        public ActionResult Valider (int id,affectationenligne f)
+        public ActionResult betha (int id)
         {
-            affectationenligne c1 = ps.GetById(f.participationId);
+            formationenligne fl = db.formationenlignes.Find(id);
 
-            c1.niveau = (f.niveau) - 1;
+            affectationenligne c1 = db.affectationenlignes.Where(x => x.formationEnLigne_formationElLigneId.Equals(fl.formationElLigneId)).Where(x => x.users_id.Equals(1)).First();
+
+            c1.niveau = c1.niveau - 1;
             ps.Update(c1);
             ps.Commit();
             return RedirectToAction("Index");

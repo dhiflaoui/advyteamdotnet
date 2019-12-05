@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Domain.Entities.cours>
 @{
-    ViewBag.Title = "mesCours";
+    ViewBag.Title = "MesCours";
     Layout = "~/Views/Shared/_Back.cshtml";
 
 }
@@ -49,6 +49,7 @@
             </tr>
         }
     </table>
+    <a href="@Url.Action("Quiz" , "Qsm")">Quiz </a>
 
 </body>
 </html>

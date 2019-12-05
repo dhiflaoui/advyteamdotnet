@@ -10,6 +10,7 @@ namespace Service
 {
  public  interface IFormationEnLigneService:IService<formationenligne>
     {
+        object getUer();
 
     }
 }

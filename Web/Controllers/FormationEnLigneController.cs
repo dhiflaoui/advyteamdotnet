@@ -29,14 +29,14 @@ namespace Web.Controllers
         {
             return View(fs.GetAll());
         }
-        public ActionResult mesCours(int id)
+        public ActionResult MesCours(int id)
         {
-            return View(cs.GetByformation(id));
+            return RedirectToAction("MesCours","Cours");
 
         }
         public ActionResult indexuser()
         {
-            return View(fs.GetById(1));
+            return View(fs.getUer());
             
 
         }
@@ -151,7 +151,14 @@ namespace Web.Controllers
         //{
         //    return View(cs.GetByformation(1));
         //}
+        //public ActionResult Participer()
+        //{
 
+           
+
+        //    return RedirectToAction("Index");
+        //}
+       
         public ActionResult Participer(int id)
         {
 
@@ -163,8 +170,8 @@ namespace Web.Controllers
             af.formationEnLigne_formationElLigneId = id;
             ps.Add(af);
             ps.Commit();
-            return View(fs.GetAll());
-          //  return View();
+          //  return View(fs.GetAll());
+            return RedirectToAction("Index","FormationEnLigne");
         }
     }
 }
