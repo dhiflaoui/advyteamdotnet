@@ -137,7 +137,7 @@ namespace Web.Controllers
             c1.niveau = (f.niveau) - 1;
             ps.Update(c1);
             ps.Commit();
-            return RedirectToAction("");
+            return RedirectToAction("Index");
         }
        
     }

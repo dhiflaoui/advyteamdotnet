@@ -163,8 +163,8 @@ namespace Web.Controllers
             af.formationEnLigne_formationElLigneId = id;
             ps.Add(af);
             ps.Commit();
-           // return View(cs.GetByformation(id));
-            return RedirectToAction("mesCours", "Cours", new { id = id });
+            return View(fs.GetAll());
+          //  return View();
         }
     }
 }

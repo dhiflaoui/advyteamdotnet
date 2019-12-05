@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Score";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+<!DOCTYPE html>
+<h2>Quiz</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <link href="~/images/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/images/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+
+<body onLoad="populate()">
+
+    <div>
+        <h1> Thank you for attempting this exam!</h1>
+        <h2>Your score is @TempData["score"]</h2>
+    </div>
+
+</body>
+</html>

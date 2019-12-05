@@ -41,8 +41,8 @@ namespace Web.Controllers
             HttpContent content = new StringContent("");
             client.PostAsJsonAsync("rest/formateur/add/" + fo.nom + "/" + fo.prenom + "/" + fo.email + "/" + fo.numero + "/" + fo.Disponible + "/"
                 + fo.Specialite , content).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
-            return View();
-          //  return RedirectToAction("index","formateur");
+            //return View();
+            return RedirectToAction("index");
 
         }
         public ActionResult Delete(int id)
@@ -59,7 +59,7 @@ namespace Web.Controllers
                 client.BaseAddress = new Uri("http://localhost:9080/PIDEV_project-web/");
                 client.DeleteAsync("rest/formateur/delete/" + id).ContinueWith((deleteTask) => deleteTask.Result.EnsureSuccessStatusCode());
 
-                return RedirectToAction("index", "formateur");
+                return RedirectToAction("index");
 
             
            

@@ -110,74 +110,80 @@ namespace Web.Controllers
             qs.Commit();
             return RedirectToAction("Index");
         }
-        //        public ActionResult Quiz() { 
-        //        //{
-        //        //    bool canMove = false;
-        //        //    if (db.qcms.Count() > quesId)
-        //        //        quesId++;
-        //        //int y = db.qcms.Count();
-        //      //  var y = qs.GetAll();
-        //        qcm q = null;
-        //       //     int i= 0;
-        //         //  foreach(var i in y  ) { 
-        //           TempData["qid"]=1;
-        //            int examid = Convert.ToInt32(TempData["qid"].ToString());
-        //        q = db.qcms.Where(x => x.qcmId == examid).SingleOrDefault();
-        //            TempData["qid"] = q.qcmId+1;
-        //                // q = db.qcms.Where(x => x.qcmId == q.qcmId+1).SingleOrDefault();
-        //          //  }
-        //    TempData.Keep();
-        //            return View(q);
-        //}
-        public ActionResult Quiz()
+        public ActionResult Score()
         {
-
-            if (db.qcms.Count() > quesId)
-            {
-                quesId++;
-                
-
-            }
-
             return View();
         }
+        public ActionResult Quiz() {
+            //TempData["score"] = 18;
+            //int fin = db.qcms.Count();
+            //if (Convert.ToInt32(TempData["idq"])>= fin)
+            //{
+            //    return RedirectToRoute("Index");
+            //}
+       try
+            {
+                if (TempData["idq"] == null)
+                {
+                    qcm q = db.qcms.First();
+                    TempData["idq"] = q.qcmId;
+                    return View(q);
+                }
+                else
+                {
+                    int idq = Convert.ToInt32(TempData["idq"]);
+                    int? idNew = idq + 1;
+                    qcm q = db.qcms.Find(idNew);
+                    TempData["idq"] = q.qcmId;
+
+                    return View(q);
+                }
+            }
+            catch (Exception) {
+
+                return RedirectToAction("Score");
+
+
+            }
+
+        }
         [HttpPost]
-        public ActionResult Quiz(qcm q)
+        public ActionResult Quiz(qcm qc)
         {
-            TempData["score"] = 0;
-            if (q.OPA != null)
+            string corrections = null; 
+           // TempData["score"] = 0;
+            if (qc.OPA != null)
             {
-                if (q.OPA.Equals("A"))
-                {
-                    TempData["score"] = Convert.ToInt32(TempData["score"]) + 1;
-
-                }
+                corrections = "A";
             }
-            else if (q.OPB != null)
+            else if (qc.OPB != null)
             {
-                if (q.OPB.Equals("B"))
-                {
-                    TempData["score"] = Convert.ToInt32(TempData["score"]) + 1;
-
-                }
-            }
-            else if (q.OPC != null)
-            {
-                if (q.OPC.Equals("C"))
-                {
-                    TempData["score"] = Convert.ToInt32(TempData["score"]) + 1;
-
-                }
+                corrections = "B";
 
             }
-            else if (q.OPD != null)
+            else if (qc.OPC != null)
             {
-                if (q.OPD.Equals("D"))
-                {
-                    TempData["score"] = Convert.ToInt32(TempData["score"]) + 1;
 
-                }
+                corrections = "C";
+
             }
+            else if (qc.OPD != null)
+            {
+                corrections = "D";
+
+            }
+
+            if(corrections.Equals(qc.COP))
+            {
+                TempData["score"] = Convert.ToInt32(TempData["score"])+1;
+            }
+            else
+            {
+                TempData["score"] = Convert.ToInt32(TempData["score"]);
+
+            }
+            TempData.Keep();
+
             return RedirectToAction("Quiz");
         }
     }

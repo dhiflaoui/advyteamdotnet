@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.formationenligne
+﻿@model Domain.Entities.qcm
 
 @{
     ViewBag.Title = "Delete";
@@ -10,47 +10,71 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>formationenligne</h4>
+    <h4>qcm</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.image)
+            @Html.DisplayNameFor(model => model.formationenligne.image)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.image)
+            @Html.DisplayFor(model => model.formationenligne.image)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.objectifs)
+            @Html.DisplayNameFor(model => model.COP)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.objectifs)
+            @Html.DisplayFor(model => model.COP)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.titre)
+            @Html.DisplayNameFor(model => model.OPA)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.titre)
+            @Html.DisplayFor(model => model.OPA)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.formateur_id)
+            @Html.DisplayNameFor(model => model.OPB)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.formateur_id)
+            @Html.DisplayFor(model => model.OPB)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.user_id)
+            @Html.DisplayNameFor(model => model.OPC)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.user_id)
+            @Html.DisplayFor(model => model.OPC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialite)
         </dd>
 
     </dl>
