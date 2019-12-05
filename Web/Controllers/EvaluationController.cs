@@ -26,6 +26,8 @@ namespace Web.Controllers
                 string xdate = String.Format(" Data <= '{0}' ", FinalDate.ToString("yyyy-MM-dd") + " 23:59:59");
                 Text = xdate;*/
                 ViewBag.result = response.Content.ReadAsAsync<IEnumerable<evaluation>>().Result;
+              
+
             }
             else
             {

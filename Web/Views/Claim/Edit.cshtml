@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_Back.cshtml";
 }
 
-<h2>Editer Une  réclamation</h2>
+
+<h2>Mis à jour</h2>
 
 @using (Html.BeginForm())
 {
@@ -32,13 +33,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fich, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fich, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fich, "", new { @class = "text-danger" })
-            </div>
-        </div>
+      
 
         <div class="form-group">
             @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -48,21 +43,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.dateclose, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dateclose, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dateclose, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.dateopen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dateopen, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.dateopen, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.reponse, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -73,29 +53,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.evaluation_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.evaluation_id, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.evaluation_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Réouvrir le ticket reclamation" class="btn btn-danger" />
+                <input type="submit" value="Réouvrir le ticket reclamation" class="btn btn-danger" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="~/Claim/Index"> <input type="button" value="Retour" class="btn btn-dark" /></a>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

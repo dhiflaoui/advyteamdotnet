@@ -41,7 +41,7 @@
 
 
 
-<p><h1 class="open">  Ticket Ouverts   </h1></p>
+<p><h1 class="open">  Reclamations Ouvertes   </h1></p>
 <br />
 <br />
 
@@ -60,7 +60,7 @@
                
             </div>
             <div class="col">
-                <input class="form-control" id="s" placeholder="Enter LE STATUT"> @*@Html.TextBox("searchstring")*@  <button type="submit"><i class="fa fa-search"></i></button>
+                @*<input class="form-control" id="s" placeholder="Enter LE STATUT">*@ @Html.TextBox("searchstring", null, new { @class = " form-control mb-2", placeholder = "statut" })    <button type="submit" class="mb-1 btn btn-outline-info"><i class="fa fa-search"></i></button>
             </div>
             <div class="col">
               
@@ -96,9 +96,11 @@
                     <th>
                         @Html.DisplayNameFor(model => model.descp)
                     </th>
-
                     <th>
                         @Html.DisplayNameFor(model => model.fich)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.comment)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.reponse)
@@ -114,15 +116,17 @@
             @foreach (var item in Model)
 
             {
+                if (item.statut != 0)
+                {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.statut)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.user_id)
+                        @Html.DisplayFor(modelItem => item.user.nom)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.evaluation_id)
+                        @Html.DisplayFor(modelItem => item.evaluation.Titre_Eval)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.titreclaim)
@@ -132,7 +136,10 @@
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.fich)
+                        <img src="~/Content/upimg/@Html.DisplayFor(modelItem => item.fich)" style="width: 50px;height: 50px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.comment)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.reponse)
@@ -142,34 +149,22 @@
                     </td>
                     <td>
 
-                        <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>
+                        @*<button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = item.ReclmationID })</button>*@
+                        <a href='@Url.Action("Edit","ClaimManager",new { id = item.ReclmationID })' class='mb-1 btn btn-outline-inverse'>
+                            <i class="fa fa-edit"></i><span>
+                                <strong>Editer</strong>
+                            </span>
+                        </a>
                     </td>
                 </tr>
-
+                }
             }
 
         </table>
 
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $("#s").on("keyup", function () {
-        var t = $(this).val();
-        $("table tr").each(function (results) {
-            if (results !== 0) {
-                var id = $(this).find("td:nth-child(1)").text();
-                if (id.indexOf(t) == 0 && id.toLowerCase().indexOf(t.toLowerCase()) < 0) {
-                    $(this).hide();
 
-                } else {
-                    $(this).show();
-                }
-            }
-        });
-
-    });
-</script>
 
 
 
@@ -183,7 +178,7 @@
 <br><br />
 <br><br />
 <br><br />
-<div><h1 id="close"> Ticket  clotures </h1></div>
+<div><h1 id="close"> Réclamations  clôtures </h1></div>
 
 
 <table class="table table-hover dataTable  table-striped table-responsive">
@@ -227,41 +222,46 @@
     {
         if (item.statut == 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.statut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.user_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.evaluation_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.titreclaim)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.descp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fich)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.comment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.reponse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateclose)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateopen)
-                </td>
-                <td>
-                    <button class="btn btn-danger"><i class="fa fa-edit"></i> @Html.ActionLink("DELETE", "Edit", new { id = item.ReclmationID })</button>
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.evaluation.Titre_Eval)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.titreclaim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descp)
+        </td>
+        <td>
+            <img src="~/Content/upimg/@Html.DisplayFor(modelItem => item.fich)" style="width: 50px;height: 50px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateclose)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateopen)
+        </td>
+        <td>
+            @*<button class="btn btn-danger"><i class="fa fa-edit"></i> @Html.ActionLink("DELETE", "Delete", new { id = item.ReclmationID })</button>*@
+            <a href='@Url.Action("Delete","ClaimManager",new { id = item.ReclmationID })' class='mb-1 btn btn-outline-danger'>
+                <i class="fa fa-trash"></i><span>
+                    <strong>Supprimer</strong>
+                </span>
+            </a>
+        </td>
+    </tr>
         }
     }
 

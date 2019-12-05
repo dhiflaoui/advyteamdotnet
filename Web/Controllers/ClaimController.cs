@@ -32,11 +32,12 @@ namespace Web.Controllers
         // GET: Claim
         public ActionResult Index()
         {
-            int o = (int)Statut.Ouvert; 
-            int r = (int)Statut.Resolu;
-            int e = (int)Statut.Enattente;
-            int c = (int)Statut.Cloture;
-            return View(CS.GetAll());
+            var instructor = db.reclamations.Include(i => i.evaluation).Include(i => i.user);
+
+            return View(instructor.ToList());
+
+            //return View(CS.GetAll());
+            
         }
 
 
@@ -49,6 +50,7 @@ namespace Web.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 reclamations = reclamations.Where(m => m.ReclmationID.ToString().Contains(searchString)).ToList();
+                
             }
             return View(reclamations);
         }
@@ -56,18 +58,7 @@ namespace Web.Controllers
         // GET: Claim/Details/5
         public ActionResult Details(int id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //var claim = from p in db.PurchaseItems
-            //                where p.ReclamationID == id
-            //                select p;
-            //if (claim == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(claim.ToList());
+            
             return View();
         }
 
@@ -86,10 +77,13 @@ namespace Web.Controllers
 
         // POST: Claim/Create
         [HttpPost]
-        public ActionResult Create(reclamation claim, HttpPostedFileBase file)
+        public ActionResult Create(reclamation claim, HttpPostedFileBase fileclaim)
         {
             int evid = Int32.Parse(Request.Form["EvaluationId"].ToString());
             int usid = Int32.Parse(Request.Form["UserID"].ToString());
+
+            //CS.Add(claim);
+           
 
             string s = ((int)claim.statut).ToString();
             var score = EV.GetAll().Where(m => m.id == evid).Any(x => x.score_Manager >= 15);
@@ -100,17 +94,17 @@ namespace Web.Controllers
                 claim.statut = Statut.Ouvert;
                 DateTime dateouvr = DateTime.Now;
                 claim.dateopen = dateouvr;
-                 //file
-                claim.fich = file.FileName;
+
+                //file
+                claim.fich = fileclaim.FileName;
+                if (fileclaim.ContentLength > 0)
+
+                {
+                    var pathim = Path.Combine(Server.MapPath("~/Content/upimg/"), fileclaim.FileName);
+                    fileclaim.SaveAs(pathim);
+                }
+
                 CS.Add(claim);
-                 if (file.ContentLength > 0)
-
-                 {
-                     var path = Path.Combine(Server.MapPath("~/Content/upload"), file.FileName);
-                     file.SaveAs(path);
-                 }
-
-                //CS.Add(claim);
                 CS.Commit();
 
 
@@ -145,13 +139,13 @@ namespace Web.Controllers
         }
 
         // GET: Claim/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, reclamation claim)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            reclamation claim = db.reclamations.Find(id);
+            claim = db.reclamations.Find(id);
             if (claim == null)
             {
                 return HttpNotFound();
@@ -162,28 +156,31 @@ namespace Web.Controllers
         // POST: Claim/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
+        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,comment,reponse")] reclamation claim)
         {
             
             if (ModelState.IsValid)
             {
                 claim.statut = Statut.Enattente;
-                db.Entry(claim).State = EntityState.Modified;
-                db.SaveChanges();
-               
+                claim.dateopen = DateTime.Now;
+                CS.Update(claim);
+                CS.Commit();
+                //db.Entry(claim).State = EntityState.Modified;
+                //db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
-            //return View(claim);
+           
+            return View(claim);
         }
 
         // GET: Claim/Edit/5
-        public ActionResult Edit2(int id)
+        public ActionResult Edit2(int id, reclamation claim)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            reclamation claim = db.reclamations.Find(id);
+             claim = db.reclamations.Find(id);
             if (claim == null)
             {
                 return HttpNotFound();
@@ -194,19 +191,21 @@ namespace Web.Controllers
         // POST: Claim/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit2([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
+        public ActionResult Edit2([Bind(Include = "ReclmationID,titreclaim,descp,comment,reponse")] reclamation claim)
         {
 
             if (ModelState.IsValid)
             {
-                DateTime dateclot = DateTime.Now;
-                claim.dateclose = dateclot;
+             
+                claim.dateclose = DateTime.Now;
                 claim.statut = Statut.Cloture;
-                db.Entry(claim).State = EntityState.Modified;
-                db.SaveChanges();
-              
+                CS.Update(claim);
+                CS.Commit();
+                //db.Entry(claim).State = EntityState.Modified;
+                //db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(claim);
         }
 
 

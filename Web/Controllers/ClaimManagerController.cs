@@ -30,7 +30,10 @@ namespace Web.Controllers
         {
 
             //string statut = ((int)claim.statut).ToString();
-            return View(CS.GetAll());
+            var instructors = db.reclamations.Include(i => i.user).Include(i => i.evaluation);
+
+            return View(instructors.ToList());
+           // return View(CS.GetAll());
         }
 
 
@@ -76,13 +79,14 @@ namespace Web.Controllers
         }
 
         // GET: ClaimManager/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, reclamation claim)
         {
+            //return View(CS.GetById(id));
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            reclamation claim = db.reclamations.Find(id);
+           claim = db.reclamations.Find(id);
             if (claim == null)
             {
                 return HttpNotFound();
@@ -98,7 +102,7 @@ namespace Web.Controllers
 
             if (ModelState.IsValid)
             {
-                claim.statut = Statut.Enattente;
+                claim.statut = Statut.Resolu;
                 db.Entry(claim).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

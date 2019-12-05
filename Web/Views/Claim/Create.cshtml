@@ -1,140 +1,143 @@
 ﻿@model Domain.Entities.reclamation
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Back.cshtml";
+                
+
+                ViewBag.Title = "Create";
+                Layout = "~/Views/Shared/_Back.cshtml";
 }
 
-<h2>Creation Reclamation </h2>
+<h2>Creation du Reclamation </h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Claim", FormMethod.Post, new { enctype = "multipart/form-data"}))
+
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.titreclaim, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.titreclaim, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.titreclaim, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.descp, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.descp, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.descp, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.fich, htmlAttributes: new { @class = "control-label col-md-2" })
-        <input type="file" name="ImageFile" required />
-
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.fich, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.fich, "", new { @class = "text-danger" })
-
-        </div>*@
-
-    <div class="form-group">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fich)
-            <div class="editor-field">
-                @Html.TextBox("file", "", new { type = "file" })
-                @Html.ValidationMessageFor(model => model.fich, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    @*<@*div class="form-group">
-            @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.titreclaim, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.comment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.dateclose, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dateclose, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dateclose, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.titreclaim, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.titreclaim, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dateopen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.descp, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dateopen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dateopen, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.descp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.descp, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.reponse, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.reponse, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.reponse, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.statut, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.evaluation_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("EvaluationId", (SelectList)ViewData["ListEval"])
-            @Html.ValidationMessageFor(model => model.evaluation_id, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("UserID", (SelectList)ViewData["ListUser"])
-            @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.fich, htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="file" name="ImageFile" required />
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fich, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fich, "", new { @class = "text-danger" })
+
+            </div>*@
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.fich)
+                <div class="editor-field">
+                    @Html.TextBox("fileclaim", "", new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.fich, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
-    </div>
+
+        @*<@*div class="form-group">
+                @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.comment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.dateclose, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateclose, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateclose, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dateopen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateopen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateopen, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.reponse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.reponse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.reponse, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.statut, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <div class="form-group">
+            @Html.LabelFor(model => model.evaluation_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EvaluationId", (SelectList)ViewData["ListEval"])
+                @Html.ValidationMessageFor(model => model.evaluation_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <script type="text/javascript">
-        function ajout() {
-            if (confirm("vous voulez faire ce reclamation ? RQ: 'aucun modification est autorisé apres l'ajout' ")) {
-                return true;
-            } else {
-                return false;
+        <div class="form-group">
+            @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserID", (SelectList)ViewData["ListUser"])
+                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+            function ajout() {
+                if (confirm(" RQ:aucune modification ne sera autorisée aprés l'ajout ")) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        }
-    </script>
+        </script>
 
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
 
-            <input type="submit" value="Create" onclick="ajout()" class="btn btn-success" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="~/Claim/Index"> <input type="button" value="Retour" class="btn btn-dark" /></a>
+                <input type="submit" value="Create" onclick="ajout()" class="btn btn-success" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="~/Claim/Index"> <input type="button" value="Retour" class="btn btn-dark" /></a>
 
+            </div>
         </div>
     </div>
-</div>
-    }
-    @*<div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
+}
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 

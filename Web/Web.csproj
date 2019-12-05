@@ -270,6 +270,9 @@
     <Content Include="Content\img\bg7.jpg" />
     <Content Include="Content\img\bg8.jpg" />
     <Content Include="Content\img\dummy.png" />
+    <Content Include="Content\img\icon\add-file.png" />
+    <Content Include="Content\img\icon\list.png" />
+    <Content Include="Content\img\icon\modif.png" />
     <Content Include="Content\img\lock-bg.jpg" />
     <Content Include="Content\img\logo-single.png" />
     <Content Include="Content\img\logo.png" />
@@ -574,6 +577,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\upimg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

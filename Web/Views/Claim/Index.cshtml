@@ -5,135 +5,141 @@
     Layout = "~/Views/Shared/_Back.cshtml";
 }
 
-<h2>Liste des Reclamations</h2>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link hhref="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    .search-panel {
-        position: center;
-        left: 80px;
-        top: auto;
-        background-color: #ced6e0;
-        height: auto;
-        align-items: center;
-        justify-content: center;
-        width: 500px;
-        padding: 60px;
-        text-align: center;
-        box-shadow: 0 0 20px #808080;
-    }
-</style>
+
+
+<img src="~/Content/img/icon/list.png" />
+<h2>Liste des Reclamations</h2>
+<br />
+
 <p>
-    <button class="btn btn-success"><i class="fa fa-plus"></i>@Html.ActionLink("Nouvelle  Reclamation ", "Create") </button>
+    @*<button ><i class="fa fa-plus"></i></button>*@
+    @*@Html.ActionLink("Nouvelle  Reclamation ", "Create", null, new { @class = "fa fa-plus" }, new { @class = "mb-1 btn btn-success" })*@
+    <a href='@Url.Action("Create","Claim")' class='mb-1 btn btn-success'>
+        <i class="fa fa-plus"></i>
+        <span>
+            <strong>Nouvelle  Reclamation</strong>
+        </span>
+    </a>
+
 </p>
 
 <br />
-<br />
-<br />
+
 @using (Html.BeginForm())
 {
 
-<div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="container">
+        <div class="row">
+            <div class="col">
 
-        </div>
-        <div class="col">
+            </div>
+            <div class="col">
 
-        </div>
-        <div class="col">
+            </div>
+            <div class="col">
 
-        </div>
-        <div class="col">
-            @Html.TextBox("searchstring")
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="col">
-            @*<input type="submit" value="Rechercher" id="submit" /> <i class="fa fa-search"></i>*@
+            </div>
+           
+                <div class="col">
+                    @Html.TextBox("searchstring", null, new { @class = " form-control mb-2" , placeholder ="num ticket"})
+                </div>
+                <button type="submit" class="mb-1 btn btn-outline-info"><i class="fa fa-search"></i></button>
+           
+            <div class="col">
+                @*<input type="submit" value="Rechercher" id="submit" /> <i class="fa fa-search"></i>*@
 
+            </div>
         </div>
     </div>
-</div>
 
 
-        }
-        <br />
-        <br />
-        <table class="table table-hover dataTable  table-striped table-responsive">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReclmationID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.titreclaim)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.descp)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fich)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.reponse)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.comment)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.statut)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.dateopen)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.evaluation_id)
-                </th>
-                <th></th>
-            </tr>
+}
+<br />
+<br />
+<table class="table table-hover dataTable  table-striped table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReclmationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.titreclaim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateopen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.evaluation_id)
+        </th>
+        <th></th>
+    </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReclmationID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.titreclaim)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.comment)
-                    </td>
-                    <td>
-                        <img src="~/Content/upload/@Html.DisplayFor(modelItem => item.fich)" style="width: 50px;height: 50px" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.reponse)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.comment)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.statut)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dateopen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.evaluation_id)
-                    </td>
-                    <td>
-                        <button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Réouvrir", "Edit", new { id = item.ReclmationID })</button>
-                        <button class="btn btn-warning"> @Html.ActionLink("Colture", "Edit2", new { id = item.ReclmationID, Style = "color:White;" }) </button>
-                    </td>
-                </tr>
-            }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReclmationID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.titreclaim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment)
+            </td>
+            <td>
+                <img src="~/Content/upimg/@Html.DisplayFor(modelItem => item.fich)" style="width: 50px;height: 50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateopen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.evaluation.Titre_Eval)
+            </td>
+            <td>
 
-        </table>
-        @*<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-        <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('.table').dataTable();
-            });</script>*@
+                @*<button class="btn btn-dark"><i class="fa fa-edit"></i> @Html.ActionLink("Réouvrir", "Edit", new { id = item.ReclmationID })</button>*@
+                <a href='@Url.Action("Edit","Claim",new { id = item.ReclmationID })' class='mb-1 btn btn-dark'>
+                    <i class="fa fa-edit"></i><span>
+                        <strong>Réouvrir</strong>
+                    </span>
+                </a>
+                &nbsp;&nbsp;
+                @Html.ActionLink("Colture", "Edit2", new { id = item.ReclmationID }, new { @class = "mb - 1 btn btn-purple" })
+            </td>
+        </tr>
+    }
+
+</table>
+@*<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.table').dataTable();
+        });</script>*@
