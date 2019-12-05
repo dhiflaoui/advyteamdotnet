@@ -75,11 +75,16 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201911221043577_FirstMigration.cs" />
-    <Compile Include="Migrations\201911221043577_FirstMigration.Designer.cs">
-      <DependentUpon>201911221043577_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201912050627021_ItitialContext.cs" />
+    <Compile Include="Migrations\201912050627021_ItitialContext.Designer.cs">
+      <DependentUpon>201912050627021_ItitialContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912050645581_ItitialssContext.cs" />
+    <Compile Include="Migrations\201912050645581_ItitialssContext.Designer.cs">
+      <DependentUpon>201912050645581_ItitialssContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +100,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911221043577_FirstMigration.resx">
-      <DependentUpon>201911221043577_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912050627021_ItitialContext.resx">
+      <DependentUpon>201912050627021_ItitialContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912050645581_ItitialssContext.resx">
+      <DependentUpon>201912050645581_ItitialssContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,6 +5,7 @@ namespace Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using Domain.Entities;
+    using Domain;
 
     public partial class AdvyteamContext : DbContext
     {
@@ -27,6 +28,8 @@ namespace Data
         public virtual DbSet<report> reports { get; set; }
         public virtual DbSet<task> tasks { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<participation> participation { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -334,6 +337,10 @@ namespace Data
                 .HasMany(e => e.projects)
                 .WithOptional(e => e.user)
                 .HasForeignKey(e => e.ownedBy_id);
+
+            modelBuilder.Entity<participation>()
+            .Property(e => e.etat)
+            .IsUnicode(false);
         }
     }
 }

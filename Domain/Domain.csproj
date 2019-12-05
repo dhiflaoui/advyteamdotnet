@@ -75,6 +75,7 @@
     <Compile Include="Entities\formateur.cs" />
     <Compile Include="Entities\formation.cs" />
     <Compile Include="Entities\mission.cs" />
+    <Compile Include="Entities\participation.cs" />
     <Compile Include="Entities\project.cs" />
     <Compile Include="Entities\report.cs" />
     <Compile Include="Entities\task.cs" />
