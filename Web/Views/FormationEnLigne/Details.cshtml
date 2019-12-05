@@ -1,0 +1,60 @@
+﻿@model Domain.Entities.formationenligne
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>formationenligne</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objectifs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objectifs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.formateur_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.formateur_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.formationElLigneId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

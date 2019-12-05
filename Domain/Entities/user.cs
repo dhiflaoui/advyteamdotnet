@@ -12,15 +12,8 @@ namespace Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
-            absences = new HashSet<absence>();
-            affectations = new HashSet<affectation>();
-            assignments = new HashSet<assignment>();
-            conges = new HashSet<conge>();
-            equipes = new HashSet<equipe>();
-            evaluations = new HashSet<evaluation>();
-            formations = new HashSet<formation>();
-            missions = new HashSet<mission>();
-            projects = new HashSet<project>();
+            affectationenligne = new HashSet<affectationenligne>();
+            formationenligne = new HashSet<formationenligne>();
         }
 
         public int id { get; set; }
@@ -72,34 +65,9 @@ namespace Domain.Entities
         public long? mission_id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<absence> absences { get; set; }
+        public virtual ICollection<affectationenligne> affectationenligne { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<affectation> affectations { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<assignment> assignments { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<conge> conges { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<equipe> equipes { get; set; }
-
-        public virtual equipe equipe { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evaluation> evaluations { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<formation> formations { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<mission> missions { get; set; }
-
-        public virtual mission mission { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> projects { get; set; }
+        public virtual ICollection<formationenligne> formationenligne { get; set; }
     }
 }

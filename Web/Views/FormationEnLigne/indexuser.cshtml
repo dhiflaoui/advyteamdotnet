@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.Entities.formationenligne>
+
+@{
+    ViewBag.Title = "indexuser";
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <title></title>
+</head>
+<body>
+    <a href="@Url.Action("Create" , "formationenligne")">Add new formation </a>
+
+
+
+        @foreach (var p in Model)
+
+        {
+
+            
+                <article class="product">
+                    <div class="product__inner">
+
+                        <section class="product__image">
+                            <img src=@Url.Content("/Content/upload/"+@p.image)></img>
+                        </section>
+
+
+                        <div class="product__details">
+
+                            <section class="product__name">@p.titre</section>
+
+                            <section class="product__price">@p.formateur_id</section>
+
+                            <section class="product__price">
+                                @p.user_id
+                            </section>
+                            <section class="product__price">
+                                @p.objectifs
+                            </section>
+                            <section class="product__price">
+                                @p.image
+                            </section>
+                           @* <div class="add-to-cart">@Html.Action("mesCours", "Cours", new { id = p.formationElLigneId })</div>*@
+
+                        </div><!-- /product__details -->
+
+                    </div>
+                </article><!-- /product -->
+            }
+            
+
+</body>
+</html>

@@ -67,15 +67,19 @@
   <ItemGroup>
     <Compile Include="Entities\absence.cs" />
     <Compile Include="Entities\affectation.cs" />
+    <Compile Include="Entities\affectationenligne.cs" />
     <Compile Include="Entities\assignment.cs" />
     <Compile Include="Entities\bug.cs" />
     <Compile Include="Entities\conge.cs" />
+    <Compile Include="Entities\cours.cs" />
     <Compile Include="Entities\equipe.cs" />
     <Compile Include="Entities\evaluation.cs" />
     <Compile Include="Entities\formateur.cs" />
     <Compile Include="Entities\formation.cs" />
+    <Compile Include="Entities\formationenligne.cs" />
     <Compile Include="Entities\mission.cs" />
     <Compile Include="Entities\project.cs" />
+    <Compile Include="Entities\qcm.cs" />
     <Compile Include="Entities\report.cs" />
     <Compile Include="Entities\task.cs" />
     <Compile Include="Entities\user.cs" />

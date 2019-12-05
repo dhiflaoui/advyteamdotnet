@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Index</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <title></title>
+</head>
+<body>
+    <a href="@Url.Action("Create" , "formateur")">Add new categorie </a>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Specialite</th>
+            <th>Numero</th>
+            <th>Email</th>
+            <th>Disponible</th>
+
+
+        </tr>
+        @foreach (var p in ViewBag.result)
+
+        {
+
+            <tr>
+                <td>@p.nom</td>
+                <td>@p.prenom</td>
+                <td>@p.Specialite</td>
+                <td>@p.numero</td>
+                <td>@p.email</td>
+                <td>@p.Disponible</td>
+                <td>
+                    @Html.ActionLink("Delete", "delete", new { id = p.id })
+                </td>
+
+
+
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Domain.Entities.qcm>
+@{
+    ViewBag.Title = "Qcm";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <title></title>
+</head>
+<body>
+    <a href="@Url.Action("Create" , "Qsm")">Add new paticipation </a>
+
+
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Question</th>
+            <th>Reponce</th>
+            <th>Option A</th>
+            <th>Option B</th>
+            <th>Option C</th>
+            <th>Option D</th>
+            <th>CATEGORIE</th>
+
+
+        </tr>
+        @foreach (var p in Model)
+
+        {
+
+            <tr>
+                <td>@p.Qtext</td>
+                <td>@p.COP</td>
+                <td>@p.OPA</td>
+                <td>@p.OPB</td>
+                <td>@p.OPC</td>
+                <td>@p.OPD</td>
+                <td>@p.Specialite</td>
+
+
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = p.qcmId })
+                    @Html.ActionLink("Edit", "Edit", new { id = p.qcmId })
+
+                    @Html.ActionLink("Details", "Details", new { id = p.qcmId })
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

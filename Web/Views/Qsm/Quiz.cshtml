@@ -1,0 +1,68 @@
+﻿@model Domain.Entities.qcm
+
+@{
+    ViewBag.Title = "Quiz";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Quiz</h2>    
+     <head>
+            <meta name="viewport" content="width=device-with" />
+            <link href="~/images/bootstrap.min.css" rel="stylesheet" />
+            <link href="~/images/bootstrap.css" rel="stylesheet" />
+            <title></title>
+        </head>
+
+        <body onLoad="populate()">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div>
+                <h1> Thank you for attempting this exam!</h1>
+                <h2>Your score is @TempData["score"]</h2>
+            </div>
+            <div class="container" style="margin:0 auto">
+                <div class="row">
+                    <h1>
+                        @Html.DisplayFor(model => model.Qtext)
+                    </h1>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>
+                    <h5>@Html.RadioButtonFor(model => model.OPA, @Model.qcmId) @Model.OPA</h5>
+                </div>
+                <br />
+                <div>
+                    <h5>@Html.RadioButtonFor(model => model.OPB, @Model.qcmId) @Model.OPB</h5>
+                </div>
+                <br />
+                <div>
+                    <h5>@Html.RadioButtonFor(model => model.OPC, @Model.qcmId) @Model.OPC</h5>
+                </div>
+                <br />
+                <div>
+                    <h5>@Html.RadioButtonFor(model => model.OPD, @Model.qcmId) @Model.OPD</h5>
+                </div>
+                <br />
+                <div class="row" style="display:">
+                    @Html.TextBoxFor(model => model.COP)
+                </div>
+            </div>
+            <hr>
+                <div>
+                    <input type="submit" value="submit" />
+                    <input type="reset" value="reset" />
+                </div>
+                
+            <hr>
+
+            }
+
+        </body>
+
+        
+

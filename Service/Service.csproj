@@ -66,7 +66,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CoursService.cs" />
+    <Compile Include="FormationEnLigneService.cs" />
+    <Compile Include="ICoursService.cs" />
+    <Compile Include="IFormationEnLigneService.cs" />
+    <Compile Include="IParticipationService.cs" />
+    <Compile Include="IQcmService.cs" />
+    <Compile Include="ParticipationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QcmService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

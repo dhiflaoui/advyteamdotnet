@@ -1,0 +1,52 @@
+﻿@model Domain.Entities.qcm
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>qcm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.formationEnLigne_formationElLigneId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.formationEnLigne_formationElLigneId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.qcmId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

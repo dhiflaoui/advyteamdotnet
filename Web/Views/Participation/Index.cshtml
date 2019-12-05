@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Domain.Entities.affectationenligne>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <title></title>
+</head>
+<body>
+    <a href="@Url.Action("Create" , "participation")">Add new paticipation </a>
+
+
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Employe</th>
+            <th>Formation</th>
+            <th>Niveau</th>
+            <th>Score</th>
+
+
+        </tr>
+        @foreach (var p in Model)
+
+        {
+
+            <tr>
+                <td>@p.users_id</td>
+                <td>@p.formationEnLigne_formationElLigneId</td>
+                <td>@p.niveau</td>
+                <td>@p.score</td>
+
+
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = p.participationId })
+                    @Html.ActionLink("Edit", "Edit", new { id = p.participationId })
+
+                    @Html.ActionLink("Details", "Details", new { id = p.participationId })
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

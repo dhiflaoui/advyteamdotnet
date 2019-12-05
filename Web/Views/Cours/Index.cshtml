@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Domain.Entities.cours>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Back.cshtml";
+
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-with" />
+    <title></title>
+</head>
+<body>
+    <a href="@Url.Action("Create" , "cours")">Add new cours </a>
+
+
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>titre</th>
+            <th>cour</th>
+            <th>tutto</th>
+          
+
+
+        </tr>
+        @foreach (var p in Model)
+
+        {
+
+            <tr>
+                <td>@p.titre</td>
+                <td>@p.cour</td>
+                <td>@p.video</td>
+                
+
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = p.courId })
+                    @Html.ActionLink("Edit", "Edit", new { id = p.courId })
+
+                    @Html.ActionLink("Details", "Details", new { id = p.courId })
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

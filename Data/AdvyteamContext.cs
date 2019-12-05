@@ -12,7 +12,11 @@ namespace Data
             : base("AdvyteamContext")
         {
         }
-
+        public virtual DbSet<affectationenligne> affectationenlignes { get; set; }
+        public virtual DbSet<cours> cours { get; set; }
+        public virtual DbSet<formateur> formateurs { get; set; }
+        public virtual DbSet<formationenligne> formationenlignes { get; set; }
+        public virtual DbSet<qcm> qcms { get; set; }
         public virtual DbSet<absence> absences { get; set; }
         public virtual DbSet<affectation> affectations { get; set; }
         public virtual DbSet<assignment> assignments { get; set; }
@@ -20,7 +24,6 @@ namespace Data
         public virtual DbSet<conge> conges { get; set; }
         public virtual DbSet<equipe> equipes { get; set; }
         public virtual DbSet<evaluation> evaluations { get; set; }
-        public virtual DbSet<formateur> formateurs { get; set; }
         public virtual DbSet<formation> formations { get; set; }
         public virtual DbSet<mission> missions { get; set; }
         public virtual DbSet<project> projects { get; set; }
@@ -86,11 +89,7 @@ namespace Data
                 .Property(e => e.title)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<equipe>()
-                .HasMany(e => e.users)
-                .WithOptional(e => e.equipe)
-                .HasForeignKey(e => e.memberOf_id);
-
+           
             modelBuilder.Entity<evaluation>()
                 .Property(e => e.Titre_Eval)
                 .IsUnicode(false);
@@ -103,35 +102,7 @@ namespace Data
                 .Property(e => e.desc_Eval)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.Disponible)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.nom)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.numero)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.prenom)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .Property(e => e.Specialite)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<formateur>()
-                .HasMany(e => e.formations)
-                .WithOptional(e => e.formateur)
-                .HasForeignKey(e => e.formateur_id);
-
+           
             modelBuilder.Entity<formation>()
                 .Property(e => e.Titre)
                 .IsUnicode(false);
@@ -176,11 +147,6 @@ namespace Data
             modelBuilder.Entity<mission>()
                 .Property(e => e.Specialite)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<mission>()
-                .HasMany(e => e.users)
-                .WithOptional(e => e.mission)
-                .HasForeignKey(e => e.mission_id);
 
             modelBuilder.Entity<mission>()
                 .HasMany(e => e.reports)
@@ -245,6 +211,97 @@ namespace Data
                 .HasMany(e => e.assignments)
                 .WithOptional(e => e.task)
                 .HasForeignKey(e => e.task_id);
+            modelBuilder.Entity<cours>()
+               .Property(e => e.cour)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<cours>()
+                .Property(e => e.titre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<cours>()
+                .Property(e => e.video)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.Disponible)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.numero)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.prenom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .Property(e => e.Specialite)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formateur>()
+                .HasMany(e => e.formationenligne)
+                .WithOptional(e => e.formateur)
+                .HasForeignKey(e => e.formateur_id);
+
+            modelBuilder.Entity<formationenligne>()
+                .Property(e => e.image)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formationenligne>()
+                .Property(e => e.objectifs)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formationenligne>()
+                .Property(e => e.titre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<formationenligne>()
+                .HasMany(e => e.affectationenligne)
+                .WithOptional(e => e.formationenligne)
+                .HasForeignKey(e => e.formationEnLigne_formationElLigneId);
+
+            modelBuilder.Entity<formationenligne>()
+                .HasMany(e => e.cours)
+                .WithOptional(e => e.formationenligne)
+                .HasForeignKey(e => e.formationEnLign_formationElLigneId);
+
+            modelBuilder.Entity<formationenligne>()
+                .HasMany(e => e.qcm)
+                .WithOptional(e => e.formationenligne)
+                .HasForeignKey(e => e.formationEnLigne_formationElLigneId);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.COP)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.OPA)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.OPB)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.OPC)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.OPD)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<qcm>()
+                .Property(e => e.Qtext)
+                .IsUnicode(false);
 
             modelBuilder.Entity<user>()
                 .Property(e => e.adresseMail)
@@ -291,49 +348,16 @@ namespace Data
                 .IsUnicode(false);
 
             modelBuilder.Entity<user>()
-                .HasMany(e => e.absences)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.affectations)
+                .HasMany(e => e.affectationenligne)
                 .WithOptional(e => e.user)
                 .HasForeignKey(e => e.users_id);
 
             modelBuilder.Entity<user>()
-                .HasMany(e => e.assignments)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.emp_id);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.conges)
+                .HasMany(e => e.formationenligne)
                 .WithOptional(e => e.user)
                 .HasForeignKey(e => e.user_id);
 
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.equipes)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.managedBy_id);
 
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.evaluations)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.formations)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.missions)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.assignee_id);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.projects)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.ownedBy_id);
         }
     }
 }

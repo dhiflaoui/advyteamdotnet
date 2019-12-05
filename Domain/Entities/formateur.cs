@@ -12,7 +12,7 @@ namespace Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public formateur()
         {
-            formations = new HashSet<formation>();
+            formationenligne = new HashSet<formationenligne>();
         }
 
         public int id { get; set; }
@@ -36,6 +36,6 @@ namespace Domain.Entities
         public string Specialite { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<formation> formations { get; set; }
+        public virtual ICollection<formationenligne> formationenligne { get; set; }
     }
 }
