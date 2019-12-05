@@ -156,14 +156,21 @@ namespace Web.Controllers
         // POST: Claim/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,comment,reponse")] reclamation claim)
+        public ActionResult Edit( reclamation claim)
         {
-            
+            reclamation c1 = CS.GetById(claim.ReclmationID);
+            c1.comment = claim.comment;
+            c1.statut= Statut.Enattente;
+            c1.ReclmationID = c1.ReclmationID;
+            c1.user_id = c1.user_id;
+            c1.evaluation_id = c1.evaluation_id;
+
             if (ModelState.IsValid)
             {
-                claim.statut = Statut.Enattente;
-                claim.dateopen = DateTime.Now;
-                CS.Update(claim);
+
+                //claim.statut = Statut.Enattente;
+                //claim.dateopen = DateTime.Now;
+                CS.Update(c1);
                 CS.Commit();
                 //db.Entry(claim).State = EntityState.Modified;
                 //db.SaveChanges();
@@ -191,15 +198,22 @@ namespace Web.Controllers
         // POST: Claim/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit2([Bind(Include = "ReclmationID,titreclaim,descp,comment,reponse")] reclamation claim)
+        public ActionResult Edit2( reclamation claim)
         {
+            reclamation c1 = CS.GetById(claim.ReclmationID);
+            c1.statut = Statut.Cloture;
+            c1.dateclose = DateTime.Now;
+            c1.ReclmationID = c1.ReclmationID;
+            c1.user_id = c1.user_id;
+            c1.evaluation_id = c1.evaluation_id;
+
 
             if (ModelState.IsValid)
             {
              
-                claim.dateclose = DateTime.Now;
-                claim.statut = Statut.Cloture;
-                CS.Update(claim);
+                //claim.dateclose = DateTime.Now;
+                //claim.statut = Statut.Cloture;
+                CS.Update(c1);
                 CS.Commit();
                 //db.Entry(claim).State = EntityState.Modified;
                 //db.SaveChanges();

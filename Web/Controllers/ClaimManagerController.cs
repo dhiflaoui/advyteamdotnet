@@ -97,14 +97,23 @@ namespace Web.Controllers
         // POST: ClaimManager/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReclmationID,titreclaim,descp,fich,comment,reponse")] reclamation claim)
+        public ActionResult Edit( reclamation claim)
         {
+
+            reclamation c2 = CS.GetById(claim.ReclmationID);
+            c2.reponse = claim.reponse;
+            c2.statut = Statut.Resolu;
+            c2.ReclmationID = c2.ReclmationID;
+            c2.user_id = c2.user_id;
+            c2.evaluation_id = c2.evaluation_id;
 
             if (ModelState.IsValid)
             {
-                claim.statut = Statut.Resolu;
-                db.Entry(claim).State = EntityState.Modified;
-                db.SaveChanges();
+                CS.Update(c2);
+                CS.Commit();
+                //claim.statut = Statut.Resolu;
+                //db.Entry(claim).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(claim);
